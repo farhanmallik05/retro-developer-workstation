@@ -5,7 +5,7 @@
 **Builder:** Farhan Mallik  
 **Degree:** B.Tech Computer Science (IT Specialization)  
 **Location:** Greater Delhi Area, India (Zip: 201310)  
-**Live URL:** `http://localhost:3001` / `https://farhanmallik.netlify.app`  
+**Live URL:** `http://farhanmallik-portfolio-356302822181.s3-website-us-east-1.amazonaws.com` (AWS S3 Hosted)  
 **GitHub Repo:** `https://github.com/farhanmallik05/retro-developer-workstation`  
 
 ---

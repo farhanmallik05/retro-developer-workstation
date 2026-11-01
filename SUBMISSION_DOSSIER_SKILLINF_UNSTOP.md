@@ -7,7 +7,7 @@
 **Participant:** Farhan Mallik  
 **Degree:** B.Tech in Computer Science (Information Technology Specialization)  
 **Location:** Greater Delhi Area, India (Zip: 201310)  
-**Live Deployed Portfolio:** `https://farhanmallik.netlify.app` *(or newly deployed URL)*  
+**Live Deployed Portfolio:** `http://farhanmallik-portfolio-356302822181.s3-website-us-east-1.amazonaws.com` *(or `https://farhanmallik.netlify.app`)*  
 **Resume PDF:** `Farhan_Mallik_Resume.pdf`  
 
 ---
@@ -18,7 +18,7 @@
 `Farhan Mallik — Retro Developer Workstation & Cloud Systems Architecture Portfolio`
 
 ### Live Portfolio URL
-`https://farhanmallik.netlify.app` *(Must be publicly accessible 24/7 without authentication)*
+`http://farhanmallik-portfolio-356302822181.s3-website-us-east-1.amazonaws.com` *(or `https://farhanmallik.netlify.app`)*
 
 ### Tagline / Headline
 > *"An award-winning, interactive retro developer workstation fusing CRT phosphor terminal aesthetics, an interactive UNIX CLI shell, real-time telemetry, an in-browser Cloud Architecture CAD modeler with live AWS CDK v2 synthesis, and an Amazon Bedrock Claude 3.5 AI Twin."*
