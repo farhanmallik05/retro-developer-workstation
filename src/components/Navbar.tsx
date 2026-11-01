@@ -1,0 +1,256 @@
+import React, { useState, useEffect } from 'react';
+import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles } from 'lucide-react';
+
+interface NavbarProps {
+  onOpenTerminal: () => void;
+  onOpenAITwin?: () => void;
+  onOpenSandbox?: () => void;
+  onOpenContact: () => void;
+  onOpenCommandPalette?: () => void;
+  isCrtActive?: boolean;
+  onToggleCrt?: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenTerminal,
+  onOpenAITwin,
+  onOpenSandbox,
+  onOpenContact,
+  onOpenCommandPalette,
+  isCrtActive = true,
+  onToggleCrt,
+}) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setCurrentTime(
+        now.toISOString().substring(11, 19) + ' UTC'
+      );
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    setMobileMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <header className="sticky top-0 z-50 w-full bg-[#080c14]/90 backdrop-blur-md border-b border-slate-800 text-xs font-mono select-none">
+      {/* Top BIOS / Telemetry Ribbon */}
+      <div className="hidden md:flex items-center justify-between px-6 py-1.5 bg-[#050811] border-b border-slate-800/80 text-[11px] text-slate-400">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <span>FM-OS v4.2 // TTY01</span>
+          </span>
+          <span className="text-slate-600">|</span>
+          <span className="text-slate-400">SYS_STATUS: <strong className="text-emerald-400">NOMINAL</strong></span>
+          <span className="text-slate-600">|</span>
+          <span className="text-slate-400">AWS_REGION: <strong className="text-cyan-400">us-east-1</strong></span>
+          <span className="text-slate-600">|</span>
+          <span className="text-slate-400">BAUD: <strong className="text-amber-400">115200</strong></span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <span className="text-slate-500 font-mono">{currentTime}</span>
+          {onToggleCrt && (
+            <button
+              onClick={onToggleCrt}
+              className={`px-2 py-0.5 rounded text-[10px] font-bold border transition-colors ${
+                isCrtActive
+                  ? 'bg-emerald-950/60 border-emerald-500/50 text-emerald-400'
+                  : 'bg-slate-900 border-slate-700 text-slate-400'
+              }`}
+              title="Toggle CRT Scanlines Filter"
+            >
+              CRT: {isCrtActive ? 'ON' : 'OFF'}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Main Navbar */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
+        {/* Logo / Prompt */}
+        <a
+          href="#hero"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo('hero');
+          }}
+          className="flex items-center gap-2 text-slate-100 hover:text-emerald-400 transition-colors group"
+        >
+          <div className="w-7 h-7 bg-emerald-950/80 border border-emerald-500/40 rounded flex items-center justify-center text-emerald-400 font-bold group-hover:border-emerald-400 shadow-sm">
+            &gt;_
+          </div>
+          <div className="leading-tight">
+            <span className="font-bold text-sm tracking-tight text-white group-hover:text-emerald-300">
+              FARHAN_MALLIK
+            </span>
+            <span className="block text-[10px] text-emerald-500/80 font-mono">
+              SYSTEM_ARCHITECT // DEV
+            </span>
+          </div>
+        </a>
+
+        {/* Section Anchors */}
+        <nav className="hidden lg:flex items-center gap-1 text-[11px] font-semibold text-slate-400">
+          <button
+            onClick={() => scrollTo('hero')}
+            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 01_INIT ]
+          </button>
+          <button
+            onClick={() => scrollTo('dossiers')}
+            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 02_DOSSIERS ]
+          </button>
+          <button
+            onClick={() => scrollTo('sandbox')}
+            className="px-2.5 py-1 hover:text-cyan-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 03_SANDBOX ]
+          </button>
+          <button
+            onClick={() => scrollTo('stack')}
+            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 04_CHIPSET ]
+          </button>
+          <button
+            onClick={() => scrollTo('certifications')}
+            className="px-2.5 py-1 hover:text-amber-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 05_AWS_CERTS ]
+          </button>
+          <button
+            onClick={() => scrollTo('about')}
+            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 06_BIO ]
+          </button>
+          <button
+            onClick={() => scrollTo('contact')}
+            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+          >
+            [ 07_TRANSMIT ]
+          </button>
+        </nav>
+
+        {/* Fast Action Buttons */}
+        <div className="hidden sm:flex items-center gap-2">
+          {onOpenCommandPalette && (
+            <button
+              onClick={onOpenCommandPalette}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white transition-all text-xs"
+              title="Command Palette (Ctrl+K)"
+            >
+              <Search className="w-3.5 h-3.5 text-slate-400" />
+              <span className="font-mono text-[10px] text-emerald-400">⌘K</span>
+            </button>
+          )}
+
+          {onOpenSandbox && (
+            <button
+              onClick={onOpenSandbox}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-900/40 hover:border-cyan-400 transition-all text-xs font-semibold"
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>CAD_SANDBOX</span>
+            </button>
+          )}
+
+          <button
+            onClick={onOpenTerminal}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/50 hover:border-emerald-400 hover:text-emerald-200 transition-all text-xs font-bold shadow-[0_0_15px_rgba(16,185,129,0.15)] active:scale-95"
+          >
+            <Terminal className="w-3.5 h-3.5" />
+            <span>EXEC_CLI</span>
+          </button>
+
+          <button
+            onClick={onOpenContact}
+            className="px-3.5 py-1.5 rounded bg-amber-500 text-slate-950 hover:bg-amber-400 font-bold text-xs tracking-wider uppercase transition-colors shadow-sm"
+          >
+            TRANSMIT
+          </button>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            onClick={onOpenTerminal}
+            className="p-2 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-400"
+            title="Terminal CLI"
+          >
+            <Terminal className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded bg-slate-900 border border-slate-700 text-slate-300 hover:text-white"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Terminal Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-[#0a0f1d] border-b border-slate-800 p-4 space-y-2 text-xs font-mono animate-in slide-in-from-top-2 duration-200">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-800 text-slate-400 text-[11px]">
+            <span>FM-OS MOBILE SHELL</span>
+            <span className="text-emerald-400">READY</span>
+          </div>
+          <button
+            onClick={() => scrollTo('hero')}
+            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-slate-300"
+          >
+            &gt; 01 // SYSTEM OVERVIEW
+          </button>
+          <button
+            onClick={() => scrollTo('dossiers')}
+            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-slate-300"
+          >
+            &gt; 02 // PROJECT DOSSIERS (ECOROUTE &amp; SWARM)
+          </button>
+          <button
+            onClick={() => scrollTo('sandbox')}
+            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-cyan-300"
+          >
+            &gt; 03 // CLOUD ARCHITECTURE SANDBOX
+          </button>
+          <button
+            onClick={() => scrollTo('stack')}
+            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-slate-300"
+          >
+            &gt; 04 // TECH STACK PINOUT
+          </button>
+          <button
+            onClick={() => scrollTo('certifications')}
+            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-amber-300"
+          >
+            &gt; 05 // AWS CERTIFIED CREDENTIALS
+          </button>
+          <button
+            onClick={() => scrollTo('contact')}
+            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-emerald-400 font-bold"
+          >
+            &gt; 07 // TRANSMIT MESSAGE / HIRE
+          </button>
+        </div>
+      )}
+    </header>
+  );
+};
