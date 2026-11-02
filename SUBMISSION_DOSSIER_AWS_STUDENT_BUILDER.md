@@ -21,7 +21,7 @@ Rather than a static resume site, this portfolio functions as an interactive AWS
 1. **Interactive Cloud Architecture Sandbox:** Evaluators can visually connect AWS primitives (S3, CloudFront, Lambda, DynamoDB, Bedrock, API Gateway, SQS), validate compliance with AWS Well-Architected Framework guidelines, calculate monthly running costs, and synthesize copyable AWS CDK v2 and CloudFormation templates.
 2. **Bedrock Claude 3.5 AI Twin:** A grounded interactive avatar answering recruiter and judge questions about serverless architecture trade-offs, SRE recovery strategies, and hands-on cloud experience.
 3. **Developer Terminal CLI:** A complete Unix-style shell supporting command execution, AWS certification lookups, and simulated serverless API calls.
-4. **Verified Proctored AWS Credentials:** AWS Certified Solutions Architect – Associate (SAA-C03: 890/1000) & AWS Certified Cloud Practitioner (CLF-C02: 920/1000) with an interactive cloud certification quiz.
+4. **Open Source Leadership & Verified Credentials:** Campus Lead 2026 at Open Source Connect Global, Apertre 3.0 & Hacktoberfest contributor (Kestra & SlothOps), 2x Hackathon Finalist, and certified in Agentic AI with n8n and Generative AI prompting.
 
 ---
 
@@ -63,7 +63,7 @@ Rather than a static resume site, this portfolio functions as an interactive AWS
 | :--- | :--- | :--- |
 | **0:00 – 0:25** | Workstation overview with CRT scanlines & BIOS bar | *"Hello AWS team! I'm Farhan Mallik, a B.Tech Computer Science student specializing in IT. Welcome to my AWS Student Builder workstation. My builder superpower is turning complex cloud architectures into interactive, self-healing systems."* |
 | **0:25 – 0:55** | Demonstrating the Cloud Architecture Sandbox | *"Instead of just listing AWS services on my resume, I built an in-browser Cloud Architecture CAD modeler. Watch as I select the Serverless REST API pattern: the system validates required services, calculates monthly running costs, and with one click, synthesizes full, valid AWS CDK v2 TypeScript code."* |
-| **0:55 – 1:25** | Terminal CLI & Recruiter Easter Egg | *"Let's open the interactive terminal CLI. By typing `aws`, evaluators can verify my AWS Certified Solutions Architect Associate score of 890 and Cloud Practitioner score of 920. Typing `sudo hire` triggers our recruiter easter egg with confetti physics."* |
+| **0:55 – 1:25** | Terminal CLI & Recruiter Easter Egg | *"Let's open the interactive terminal CLI. By typing `oss` or `skills`, evaluators can verify my Open Source Leadership as Campus Lead 2026, my Kestra and SlothOps contributions, and my 2x Hackathon finalist record. Typing `sudo hire` triggers our recruiter easter egg with confetti physics."* |
 | **1:25 – 1:50** | Bedrock AI Twin & Project Dossiers | *"Evaluators can also query my Amazon Bedrock AI Twin to ask about my EcoRoute EV navigation engine or my CloudOps 4-agent incident triaging swarm."* |
 | **1:50 – 2:00** | Wrap up | *"Thank you for reviewing my AWS Student Builder Challenge entry. Built 100% on AWS principles."* |
 

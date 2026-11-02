@@ -71,16 +71,16 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Badges / Specifications */}
               <div className="flex flex-wrap gap-2 text-[10px] font-mono">
                 <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold">
-                  [ KERNEL: FULL-STACK DEVELOPER ]
+                  [ KERNEL: AI &amp; FRONTEND ENGINEER ]
                 </span>
                 <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 font-bold">
-                  [ SPEC: B.TECH CS (IT) ]
+                  [ SPEC: B.TECH CSE (IT) // 2024–2028 ]
                 </span>
                 <span className="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/50 text-amber-300 font-bold">
-                  [ STATION: DELHI NCR // 201310 ]
+                  [ STATION: GREATER NOIDA // 201310 ]
                 </span>
                 <span className="px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/50 text-purple-300 font-bold">
-                  [ AWS SAA-C03: 890 // CLF-C02: 920 ]
+                  [ CAMPUS LEAD 2026 // 2X HACKATHON FINALIST // OPEN SOURCE CONTRIBUTOR ]
                 </span>
               </div>
 
@@ -90,10 +90,10 @@ export const Hero: React.FC<HeroProps> = ({
                   &gt; identity --display-summary
                 </p>
                 <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.1]">
-                  Architecting Resilient Cloud Systems &amp; Autonomous AI Swarms.
+                  Architecting Multi-Agent AI Workflows, High-Craft Frontends &amp; Cloud Delivery.
                 </h1>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-mono pt-2">
-                  Building fault-tolerant distributed backends on AWS, geospatial route calculators with sub-second vector tiles, and self-healing multi-agent SRE swarms using the Strands Agents SDK and Amazon Bedrock.
+                  Specializing in autonomous multi-agent LLM systems with LangGraph, Google Gemma 4, NVIDIA Nemotron, and Ollama alongside responsive Next.js 14, TypeScript, Tailwind CSS, and Framer Motion frontends. Two-time Hackathon Finalist and Open Source Campus Lead 2026.
                 </p>
               </div>
 
@@ -129,20 +129,20 @@ export const Hero: React.FC<HeroProps> = ({
               {/* Hardware Telemetry Bar */}
               <div className="pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
                 <div>
-                  <span className="block text-slate-500 text-[10px]">VERIFIED_CERTS</span>
-                  <span className="font-bold text-amber-400">2 AWS Proctored</span>
+                  <span className="block text-slate-500 text-[10px]">LEADERSHIP</span>
+                  <span className="font-bold text-amber-400">Campus Lead '26</span>
                 </div>
                 <div>
-                  <span className="block text-slate-500 text-[10px]">BENCHMARK_MTTD</span>
-                  <span className="font-bold text-emerald-400">28 Seconds</span>
+                  <span className="block text-slate-500 text-[10px]">HACKATHONS</span>
+                  <span className="font-bold text-emerald-400">2x Finalist</span>
                 </div>
                 <div>
-                  <span className="block text-slate-500 text-[10px]">EVENT_THROUGHPUT</span>
-                  <span className="font-bold text-cyan-400">5,000 req/sec</span>
+                  <span className="block text-slate-500 text-[10px]">OPEN_SOURCE</span>
+                  <span className="font-bold text-cyan-400">Kestra &amp; Apertre</span>
                 </div>
                 <div>
-                  <span className="block text-slate-500 text-[10px]">TEST_COVERAGE</span>
-                  <span className="font-bold text-purple-400">100% (6/6 Pass)</span>
+                  <span className="block text-slate-500 text-[10px]">AI_TEST_SUITE</span>
+                  <span className="font-bold text-purple-400">140+ Tests Passing</span>
                 </div>
               </div>
             </div>
@@ -169,17 +169,17 @@ export const Hero: React.FC<HeroProps> = ({
                     </div>
 
                     <div className="p-2.5 rounded bg-slate-950/90 border border-slate-800/80 space-y-1.5 text-[11px]">
-                      <p className="text-cyan-400 font-bold">[+] SPATIAL ROUTE CALCULATOR INITIATED</p>
-                      <p className="text-slate-400">• Dataset: 45,000+ Alternative Fuel Stations (NREL)</p>
-                      <p className="text-slate-400">• Service: Amazon Location Service (MapLibre vector tiles)</p>
-                      <p className="text-emerald-400 font-bold">• Latency: 38ms (P99 cached CloudFront)</p>
+                      <p className="text-amber-400 font-bold">[+] GHAR SEARCH: AGENTIC DUE-DILIGENCE</p>
+                      <p className="text-slate-400">• Engine: LangGraph (0.2) + TinyFish Web Agents</p>
+                      <p className="text-slate-400">• Verification: 6 Parallel Workers across 1.5L+ RERA Records</p>
+                      <p className="text-emerald-400 font-bold">• Deterministic Trust Score: 0–100 in &lt;90s (140 Tests)</p>
                     </div>
 
                     <div className="p-2.5 rounded bg-slate-950/90 border border-slate-800/80 space-y-1.5 text-[11px]">
                       <p className="text-purple-400 font-bold">[+] CLOUDOPS AUTONOMOUS SWARM READY</p>
                       <p className="text-slate-400">• Engine: Strands SDK + Bedrock (Claude 3.5 Sonnet)</p>
                       <p className="text-slate-400">• Active Agents: Triage, LogDiagnostic, DiffAnalyzer, Fixer</p>
-                      <p className="text-emerald-400 font-bold">• Accuracy: 5/5 Benchmark Scenarios PASSED</p>
+                      <p className="text-emerald-400 font-bold">• Accuracy: 5/5 Benchmark Scenarios PASSED (28s MTTD)</p>
                     </div>
                   </div>
 

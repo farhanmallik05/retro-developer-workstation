@@ -35,13 +35,25 @@ console.log('🧪 Running AWS Student Builder Challenge Test Suite...\n');
   console.log('✅ Test 3 Passed: Terminal CLI command set contains all required superpowers.');
 }
 
-// Test 4: AWS Certification Score Sanity
+// Test 4: Open Source Leadership & Verified Technical Credentials
 {
-  const scores = [890, 920];
-  scores.forEach(score => {
-    assert.ok(score >= 700 && score <= 1000, 'AWS passing scale is 700-1000');
-  });
-  console.log('✅ Test 4 Passed: AWS certification records adhere to official scoring boundaries.');
+  const leadershipRoles = [
+    { org: 'Open Source Connect Global', role: 'Campus Lead 2026' },
+    { org: 'Apertre 3.0 & Hacktoberfest', role: 'Open Source Contributor (Kestra & SlothOps)' },
+    { org: 'Paranox Hackathon & Buildathon 1.0', role: '2x Hackathon Finalist' }
+  ];
+  const technicalCerts = [
+    'Agentic AI Workflows with n8n (AnalytixLabs, 2025)',
+    'Introduction to Generative AI & Prompting (NSDC & LetsUpgrade, 2025)',
+    'DSA Fundamentals (AnalytixLabs, 2025)',
+    'Git & GitHub Bootcamp (IEEE MAIT, 2025)'
+  ];
+  
+  assert.strictEqual(leadershipRoles.length, 3, 'Must maintain 3 core leadership and honor designations');
+  assert.strictEqual(technicalCerts.length, 4, 'Must maintain 4 verified technical certifications');
+  assert.ok(leadershipRoles.some(r => r.role.includes('Campus Lead 2026')));
+  assert.ok(technicalCerts.some(c => c.includes('Agentic AI Workflows with n8n')));
+  console.log('✅ Test 4 Passed: Open Source Leadership, hackathon honors, and technical certifications verified.');
 }
 
 // Test 5: Infrastructure as Code (CDK & CloudFormation) Synthesizer

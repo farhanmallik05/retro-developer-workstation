@@ -12,24 +12,24 @@ interface Message {
 }
 
 const PRESET_QUESTIONS = [
-  'What was your hardest cloud bug and how did you fix it?',
-  'Why do you prefer AWS serverless architectures?',
-  'How did you build EcoRoute on Amazon Location Service?',
-  'What are your internship goals for Summer 2027?',
+  "How did you architect Ghar Search's 6-agent verification pipeline?",
+  'What open-source contributions and leadership roles have you held?',
+  'How does ForkFix parallel reality debugging work?',
+  'How does CloudOps Swarm achieve 28-second incident triage on AWS?',
 ];
 
 const PRESET_ANSWERS: Record<string, string> = {
-  'What was your hardest cloud bug and how did you fix it?':
-    'My toughest bug occurred in an event-driven Lambda pipeline where a downstream API began rate-limiting requests. Because our retry policy was unthrottled, thousands of invocations retried simultaneously, creating a self-inflicted Thundering Herd DDoS. I solved it by implementing exponential backoff with full jitter and configuring an SQS Dead Letter Queue (DLQ) with an automated circuit breaker.',
+  "How did you architect Ghar Search's 6-agent verification pipeline?":
+    'In Ghar Search (github.com/farhanmallik05/ghar-search), I engineered a LangGraph (0.2) multi-agent workflow paired with TinyFish Web Agents. When an Indian property listing is ingested, 6 concurrent verification workers query 1.5L+ RERA records, eCourts/NCLT insolvency signals, statutory approvals, and promoter track records to synthesize a deterministic 0–100 Trust Score in under 90 seconds, validated across 140 automated tests.',
   
-  'Why do you prefer AWS serverless architectures?':
-    'Serverless forces disciplined systems thinking. Instead of maintaining persistent VM idle states and patching operating systems, serverless aligns cost directly with business value ($0 when idle). Primitives like AWS Lambda, DynamoDB, and EventBridge let engineers focus on domain business logic and fault-tolerant event contracts.',
+  'What open-source contributions and leadership roles have you held?':
+    'I serve as Campus Lead 2026 for Open Source Connect Global, leading developer community mentorship and peer PR reviews. I contributed to Kestra core Vue/TypeScript components by migrating to scoped SCSS design tokens (--ks-*), contributed through Apertre 3.0 and Hacktoberfest 2025/2026, and architected SlothOps (an open-weight Gemma 2 + TabPFN cognitive conservation agent).',
   
-  'How did you build EcoRoute on Amazon Location Service?':
-    'EcoRoute ingests 45,000+ alternative fueling stations from open government feeds into GeoJSON. We use MapLibre GL JS client-side clustering for 60 FPS rendering, authenticated via Amazon Cognito Identity Pools. Route polyline coordinates are computed by Amazon Location Service Route Calculator and buffered with Turf.js to highlight chargers directly along the travel corridor.',
+  'How does ForkFix parallel reality debugging work?':
+    'ForkFix (github.com/farhanmallik05/forkfix) is an autonomous coding agent that snapshots failing test suites and spawns 4 parallel sandboxed execution realities on an NVIDIA Nemotron model ladder. It synthesizes candidate patches and proves fixes against deterministic test oracles, paired with SpecterLens for visual-to-patch multimodal codebase archeology with Google Gemma 4.',
   
-  'What are your internship goals for Summer 2027?':
-    'I want to join a world-class infrastructure or SRE team where I can work on high-scale distributed systems, latency reduction, and autonomous reliability tooling. I thrive in environments that value deep technical rigor, automated testing, and blameless post-mortem culture.',
+  'How does CloudOps Swarm achieve 28-second incident triage on AWS?':
+    'CloudOps Swarm is built on the Strands Agents SDK and Amazon Bedrock (Claude 3.5 Sonnet & Haiku). When a CloudWatch alarm triggers, 4 specialized agents collaborate: Triage Lead parses severity, Log Diagnostic queries log streams, Diff Analyzer correlates git commit diffs, and Remediation Lead synthesizes a verified rollback PR in 28 seconds (100% benchmark accuracy across 5 archetypes) for just $0.01 per triage.',
 };
 
 export const AITwinModal: React.FC<AITwinModalProps> = ({ isOpen, onClose }) => {

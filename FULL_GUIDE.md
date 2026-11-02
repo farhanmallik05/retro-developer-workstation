@@ -55,8 +55,8 @@ src/
 │   ├── Skills.tsx                   # Categorized skills matrix (Cloud, AI, DevOps)
 │   ├── Projects.tsx                 # Featured AWS projects with live demo links
 │   ├── GitHubActivity.tsx           # Real-time repository cards & commit metrics
-│   ├── Certifications.tsx           # Official AWS credentials with quiz trigger
-│   ├── CertificationQuizModal.tsx   # Interactive SAA-C03 & AIF-C01 exam simulator
+│   ├── Certifications.tsx           # Open source leadership & technical credentials
+│   ├── CertificationQuizModal.tsx   # Interactive cloud architecture & AI knowledge challenge
 │   ├── InteractiveTerminal.tsx      # Terminal CLI v2 with command dispatcher
 │   ├── AITwinModal.tsx              # Amazon Bedrock Claude conversation drawer
 │   ├── CloudArchitectureSandbox.tsx # Visual blueprint validator & IaC exporter
@@ -119,7 +119,7 @@ Implemented in `src/utils/iacGenerator.ts`:
 ### 1.7 AWS Certification Knowledge Challenge Widget
 
 Implemented in `src/components/CertificationQuizModal.tsx`:
-- Features scenario-based questions from **AWS Certified Solutions Architect – Associate (SAA-C03)** and **AWS Certified AI Practitioner (AIF-C01)**.
+- Features scenario-based questions covering AWS Well-Architected Framework and Generative AI Multi-Agent governance.
 - Explains architectural rationales (CloudFront edge DDoS protection, Bedrock Guardrails PII masking, DynamoDB DAX microsecond reads, HMAC HITL gates).
 - Calculates real-time score percentage and domain competence rating.
 

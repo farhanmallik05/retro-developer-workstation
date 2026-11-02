@@ -53,7 +53,7 @@ Unlike generic corporate portfolio templates, this website is conceived as a hig
 | **4. Functionality & Navigation** | Instant smooth scrolling, Command Palette (`Ctrl+K` / `Cmd+K`), quick fast-action dock, and in-browser IaC code export. |
 | **5. Project Presentation & Content** | Complete declassified engineering dossiers with measured telemetry, architecture diagrams, and live GitHub repository links. |
 | **6. Effective Use of Animations** | Subtle CRT scanlines, confetti physics on recruiter access, real-time typing simulator, and interactive commit density matrix. |
-| **7. Professional Presentation** | Fully verified AWS credentials (SAA-C03: 890, CLF-C02: 920), offline outbox queue, and 6/6 automated test suite passing. |
+| **7. Professional Presentation** | Fully verified Open Source Leadership (Campus Lead 2026), 2x Hackathon Finalist, Kestra & SlothOps contributions, and 6/6 automated test suite passing. |
 
 ---
 
@@ -64,9 +64,11 @@ Before submitting on Unstop, verify that `Farhan_Mallik_Resume.pdf` contains:
 - [x] Title: **Full-Stack Developer & AI-Native Systems Architect**
 - [x] Education: **B.Tech Computer Science (IT Specialization)**
 - [x] Location: **Greater Delhi Area, India (Zip: 201310)**
-- [x] AWS Certifications:
-  - AWS Certified Solutions Architect – Associate (SAA-C03) | Score: 890 / 1000
-  - AWS Certified Cloud Practitioner (CLF-C02) | Score: 920 / 1000
+- [x] Open Source Leadership & Credentials:
+  - Campus Lead 2026 | Open Source Connect Global
+  - 2x Hackathon Finalist | Paranox Hackathon & Buildathon 1.0 (KCC ITM)
+  - Agentic AI Workflows with n8n (AnalytixLabs, 2025)
+  - Introduction to Generative AI & Prompting (NSDC & LetsUpgrade, 2025)
 - [x] Featured Projects: EcoRoute EV Map, CloudOps Autonomous Swarm, Resilient Order Processing Hub
 - [x] External Links: `https://farhanmallik.netlify.app` & `https://beacons.ai/farhanmallik`
 - [x] File Size: Under 2MB, single-page, ATS-optimized text.

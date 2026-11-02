@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               FARHAN_MALLIK
             </span>
             <span className="block text-[10px] text-emerald-500/80 font-mono">
-              SYSTEM_ARCHITECT // DEV
+              AI &amp; FRONTEND ENGINEER // DEV
             </span>
           </div>
         </a>
@@ -132,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => scrollTo('certifications')}
             className="px-2.5 py-1 hover:text-amber-400 hover:bg-slate-800/60 rounded transition-colors"
           >
-            [ 05_AWS_CERTS ]
+            [ 05_OPEN_SOURCE ]
           </button>
           <button
             onClick={() => scrollTo('about')}
@@ -241,7 +241,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             onClick={() => scrollTo('certifications')}
             className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-amber-300"
           >
-            &gt; 05 // AWS CERTIFIED CREDENTIALS
+            &gt; 05 // OPEN SOURCE &amp; LEADERSHIP
           </button>
           <button
             onClick={() => scrollTo('contact')}

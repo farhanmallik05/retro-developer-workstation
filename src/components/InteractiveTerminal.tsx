@@ -57,13 +57,13 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
         resultNode = (
           <div className="space-y-1.5 text-slate-300 text-xs">
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">bio</span> Print student engineering background</p>
-            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">skills</span> Output categorized cloud proficiencies</p>
-            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">projects</span> List flagship AWS builds & repositories</p>
-            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">resume</span> Print quick plain-text resume</p>
-            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">curl</span> Query simulated serverless API endpoint</p>
-            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">aws</span> Display verified AWS certifications & scores</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">skills</span> Output categorized AI, frontend &amp; cloud stack</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">projects</span> List flagship AI platforms &amp; open-source repos</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">resume</span> Print complete plain-text resume</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">curl</span> Query live profile JSON API endpoint</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">oss</span> Display open source contributions &amp; leadership</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">matrix</span> Toggle falling digital matrix rain</p>
-            <p><span className="text-emerald-400 font-mono w-28 inline-block font-bold">sudo hire</span> Recruiter direct link & easter egg 🎉</p>
+            <p><span className="text-emerald-400 font-mono w-28 inline-block font-bold">sudo hire</span> Recruiter direct link &amp; easter egg 🎉</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">clear</span> Clear terminal screen</p>
           </div>
         );
@@ -72,14 +72,16 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
       case 'resume':
         resultNode = (
           <div className="p-3 bg-slate-900/80 rounded border border-slate-800 space-y-1.5 font-mono text-slate-300 text-[11px]">
-            <p className="text-cyan-400 font-bold">FARHAN MALLIK — FULL-STACK & AI-NATIVE BUILDER</p>
-            <p>Education: B.Tech Computer Science (IT Specialization) • Greater Delhi Area (Zip: 201310)</p>
-            <p>Certifications: AWS SAA-C03 (890/1000) • AWS CLF-C02 (920/1000)</p>
-            <p>Core Focus: Multi-Agent Systems, Serverless Architectures, Modern Web Experiences (React/Vite)</p>
-            <p>Flagship: EcoRoute Clean EV Navigator • CloudOps Multi-Agent SRE Swarm • Resilient Event Hub</p>
-            <p>Live Portfolio: <a href="https://farhanmallik.netlify.app" target="_blank" rel="noreferrer" className="text-cyan-400 underline">farhanmallik.netlify.app</a></p>
-            <p>Connect Hub: <a href="https://beacons.ai/farhanmallik" target="_blank" rel="noreferrer" className="text-teal-400 underline">beacons.ai/farhanmallik</a></p>
-            <p className="text-emerald-400">Status: Dual Hackathon Finalist • AWS Student Builder & Skillinf Design '26</p>
+            <p className="text-cyan-400 font-bold">FARHAN MALLIK — AI &amp; FRONTEND ENGINEER</p>
+            <p>Education: B.Tech in CSE &amp; IT (2024–2028), KCC ITM, Greater Noida | D.A.V. Rohtak (12th PCM 2023, 10th 2021)</p>
+            <p>Leadership: Campus Lead 2026 (Open Source Connect Global) • 2x Hackathon Finalist</p>
+            <p>Open Source: Kestra (Scoped SCSS design tokens), Apertre 3.0, Hacktoberfest 2025/2026, SlothOps</p>
+            <p>Certifications: Agentic AI with n8n (AnalytixLabs) • Intro to GenAI (NSDC) • DSA Fundamentals (AnalytixLabs) • Git/GitHub (IEEE MAIT)</p>
+            <p>Core Stack: LangGraph, Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Python, Docker, FastAPI</p>
+            <p>Flagship: Ghar Search (LangGraph 6-Agent Due Diligence) • CloudOps Swarm (Strands SDK) • ForkFix &amp; SpecterLens (Nemotron + Gemma 4)</p>
+            <p>Live Portfolio: <a href="https://farhanmallik05.github.io/retro-developer-workstation/" target="_blank" rel="noreferrer" className="text-cyan-400 underline">farhanmallik05.github.io/retro-developer-workstation/</a></p>
+            <p>GitHub: <a href="https://github.com/farhanmallik05" target="_blank" rel="noreferrer" className="text-teal-400 underline">github.com/farhanmallik05</a> | LinkedIn: <a href="https://linkedin.com/in/farhanmallik" target="_blank" rel="noreferrer" className="text-teal-400 underline">linkedin.com/in/farhanmallik</a></p>
+            <p className="text-emerald-400">Contact: farhanmallick2005@gmail.com | +91 7988009083 | Greater Noida, India</p>
           </div>
         );
         break;
@@ -87,18 +89,19 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
       case 'curl':
         resultNode = (
           <div className="font-mono text-slate-300 text-xs">
-            <p className="text-slate-500">$ curl -s https://farhanmallik.netlify.app/api/profile</p>
+            <p className="text-slate-500">$ curl -s https://farhanmallik05.github.io/retro-developer-workstation/api/profile</p>
             <p className="text-emerald-400 font-bold mt-1">HTTP/2 200 OK</p>
             <p className="text-slate-400 font-mono text-[11px]">
               {JSON.stringify({
                 name: 'Farhan Mallik',
-                title: 'Full-Stack Developer & AI-Native Builder',
-                location: 'Greater Delhi Area, India (201310)',
-                degree: 'B.Tech CS (IT)',
-                livePortfolio: 'https://farhanmallik.netlify.app',
-                beaconsHub: 'https://beacons.ai/farhanmallik',
-                status: 'Available for Engineering Roles & Hackathons',
-                latency: '22ms'
+                title: 'AI & Frontend Engineer',
+                location: 'Greater Noida, India',
+                degree: 'B.Tech CSE & IT (2024–2028), KCC ITM',
+                leadership: 'Campus Lead 2026 (Open Source Connect Global)',
+                honors: '2x Hackathon Finalist',
+                github: 'https://github.com/farhanmallik05',
+                portfolio: 'https://farhanmallik05.github.io/retro-developer-workstation/',
+                latency: '18ms'
               }, null, 2)}
             </p>
           </div>
@@ -108,10 +111,10 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
       case 'bio':
         resultNode = (
           <p className="text-slate-300 text-xs leading-relaxed">
-            👨‍💻 <strong>Farhan Mallik</strong> — Full-Stack Developer & AI-Native Builder.<br />
-            B.Tech in Computer Science with Information Technology specialization (Greater Delhi Area).<br />
-            Passionate about building digital products, interactive web experiences, multi-agent autonomous swarms, and scalable serverless cloud architectures on AWS.<br />
-            Portfolio: <a href="https://farhanmallik.netlify.app" target="_blank" rel="noreferrer" className="text-cyan-400 underline">farhanmallik.netlify.app</a> • Link Hub: <a href="https://beacons.ai/farhanmallik" target="_blank" rel="noreferrer" className="text-teal-400 underline">beacons.ai/farhanmallik</a>
+            👨‍💻 <strong>Farhan Mallik</strong> — AI &amp; Frontend Engineer (B.Tech CSE, 2028).<br />
+            Specializing in multi-agent LLM applications (LangGraph, Gemma 4, NVIDIA Nemotron, Ollama), high-craft web interfaces (Next.js 14, TypeScript, Tailwind CSS, Framer Motion), and containerized deployments.<br />
+            Two-time Hackathon Finalist and Open Source Campus Lead 2026.<br />
+            GitHub: <a href="https://github.com/farhanmallik05" target="_blank" rel="noreferrer" className="text-cyan-400 underline">github.com/farhanmallik05</a> • LinkedIn: <a href="https://linkedin.com/in/farhanmallik" target="_blank" rel="noreferrer" className="text-teal-400 underline">linkedin.com/in/farhanmallik</a>
           </p>
         );
         break;
@@ -120,12 +123,16 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
         resultNode = (
           <div className="space-y-2 text-xs text-slate-300">
             <div>
-              <span className="text-cyan-400 font-bold block mb-1">☁️ AWS Cloud & Serverless:</span>
-              <p>Amplify, Lambda, DynamoDB, Bedrock, Location Service, S3, CloudFront, EventBridge, API Gateway, Cognito, CDK, CloudWatch</p>
+              <span className="text-purple-400 font-bold block mb-1">🤖 AI &amp; Agentic Systems:</span>
+              <p>LangGraph (Multi-Agent Orchestration), TinyFish Web Agents, Google Gemma 4/2, NVIDIA Nemotron, Ollama (Local LLM), Strands Agents SDK, n8n Automation, Prompt Engineering, Claude Code, Cursor</p>
             </div>
             <div>
-              <span className="text-teal-400 font-bold block mb-1">💻 Full-Stack Web & AI:</span>
-              <p>TypeScript, React, Tailwind CSS, Python, Strands Agents SDK, Docker, PostgreSQL, REST/GraphQL</p>
+              <span className="text-emerald-400 font-bold block mb-1">🎨 Frontend &amp; UI/UX Craft:</span>
+              <p>Next.js 14 (App Router), React, TypeScript, JavaScript (ES6+), Tailwind CSS, Framer Motion, Scoped SCSS Tokens (--ks-*), Lucide Icons, Responsive Web Design, Figma</p>
+            </div>
+            <div>
+              <span className="text-cyan-400 font-bold block mb-1">☁️ Cloud &amp; Containerization:</span>
+              <p>Docker, Docker Compose, Vercel, Netlify, Cloudflare, Linux (Bash), Git &amp; GitHub Actions CI, Pytest Automated Testing, AWS Lambda &amp; S3</p>
             </div>
           </div>
         );
@@ -135,27 +142,36 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
         resultNode = (
           <div className="space-y-2 text-xs text-slate-300">
             <div className="p-2 rounded bg-slate-900 border-l-2 border-cyan-400">
-              <strong className="text-white">1. EcoRoute: Clean Energy & EV Grid Navigator</strong>
-              <p className="text-slate-400">Amazon Location Service, MapLibre GL, Cognito, NREL Open Data. Real-time EV corridor routing.</p>
+              <strong className="text-white">1. Ghar Search: Agentic Property Due-Diligence</strong>
+              <p className="text-slate-400">Next.js 14, LangGraph, TinyFish Web Agents, FastAPI, Docker. 6 parallel workers across 1.5L+ RERA records (140 tests).</p>
             </div>
             <div className="p-2 rounded bg-slate-900 border-l-2 border-teal-400">
-              <strong className="text-white">2. CloudOps Swarm: Autonomous AWS Incident Triaging</strong>
-              <p className="text-slate-400">Strands Agents SDK, Amazon Bedrock (Claude 3.5 Sonnet). 4-agent incident response swarm.</p>
+              <strong className="text-white">2. CloudOps Swarm: Autonomous SRE &amp; Self-Healing</strong>
+              <p className="text-slate-400">Strands Agents SDK, Bedrock Claude 3.5 Sonnet. 4-agent incident response swarm, 28s MTTD, 100% accuracy.</p>
             </div>
             <div className="p-2 rounded bg-slate-900 border-l-2 border-purple-400">
-              <strong className="text-white">3. Resilient Event-Driven Order Processing Hub</strong>
-              <p className="text-slate-400">AWS Lambda, DynamoDB, SQS DLQ, Circuit Breakers, AWS CDK.</p>
+              <strong className="text-white">3. ForkFix &amp; SpecterLens: Autonomous AI Debugging</strong>
+              <p className="text-slate-400">NVIDIA Nemotron, Google Gemma 4, Python, Nebius. 4 parallel sandboxed execution realities.</p>
+            </div>
+            <div className="p-2 rounded bg-slate-900 border-l-2 border-amber-400">
+              <strong className="text-white">4. EcoRoute: Clean Energy &amp; EV Grid Navigator</strong>
+              <p className="text-slate-400">Amazon Location Service, MapLibre GL, Turf.js. 45,000+ alternative fueling stations.</p>
             </div>
           </div>
         );
         break;
 
+      case 'oss':
+      case 'opensource':
       case 'aws':
         resultNode = (
-          <div className="space-y-1 text-xs text-slate-300">
-            <p className="text-amber-400 font-bold">🏆 Verified AWS Certifications:</p>
-            <p>• <strong>AWS Certified Solutions Architect – Associate (SAA-C03)</strong> | Score: 890/1000</p>
-            <p>• <strong>AWS Certified Cloud Practitioner (CLF-C02)</strong> | Score: 920/1000</p>
+          <div className="space-y-1.5 text-xs text-slate-300">
+            <p className="text-amber-400 font-bold">🌐 Open Source Leadership &amp; Honors:</p>
+            <p>• <strong>Campus Lead 2026</strong> — Open Source Connect Global (Feb 2026 – Apr 2026)</p>
+            <p>• <strong>Kestra Contributor</strong> — Scoped SCSS design-system tokens (--ks-*) migration across Vue/TS</p>
+            <p>• <strong>Apertre 3.0 &amp; Hacktoberfest</strong> — Open Source Contributor (2025 &amp; 2026) &amp; SlothOps Architect</p>
+            <p>• <strong>2x Hackathon Finalist</strong> — Paranox Hackathon &amp; Buildathon 1.0 (KCC ITM)</p>
+            <p>• <strong>Certifications:</strong> Agentic AI with n8n (AnalytixLabs) • Intro to GenAI (NSDC) • DSA Fundamentals</p>
           </div>
         );
         break;
@@ -174,10 +190,11 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
             </p>
             <p>Thank you for exploring my engineering showcase! I am actively open to Full-Stack, Cloud, and AI Systems Engineering opportunities.</p>
             <p className="pt-1">
-              🌐 Live Portfolio: <a href="https://farhanmallik.netlify.app" target="_blank" rel="noreferrer" className="underline text-white font-mono">farhanmallik.netlify.app</a><br />
-              🔗 Connect Hub: <a href="https://beacons.ai/farhanmallik" target="_blank" rel="noreferrer" className="underline text-white font-mono">beacons.ai/farhanmallik</a><br />
-              📍 Location: Greater Delhi Area, India (Zip: 201310)<br />
-              🎓 Degree: B.Tech Computer Science (IT Specialization)
+              🌐 Live Portfolio: <a href="https://farhanmallik05.github.io/retro-developer-workstation/" target="_blank" rel="noreferrer" className="underline text-white font-mono">farhanmallik05.github.io/retro-developer-workstation/</a><br />
+              🐙 GitHub: <a href="https://github.com/farhanmallik05" target="_blank" rel="noreferrer" className="underline text-white font-mono">github.com/farhanmallik05</a> | LinkedIn: <a href="https://linkedin.com/in/farhanmallik" target="_blank" rel="noreferrer" className="underline text-white font-mono">linkedin.com/in/farhanmallik</a><br />
+              📍 Location: Greater Noida, India | 📞 +91 7988009083<br />
+              🎓 Education: B.Tech in CSE &amp; IT (2024–2028), KCC ITM, Greater Noida<br />
+              🏆 Recognition: Campus Lead 2026 (Open Source Connect Global) • 2x Hackathon Finalist
             </p>
           </div>
         );

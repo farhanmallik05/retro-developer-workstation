@@ -100,10 +100,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     },
     {
       id: 'cmd-certs',
-      title: 'View AWS Certifications & Badges',
-      subtitle: 'Solutions Architect Associate, AI Practitioner, Cloud Practitioner',
+      title: 'View Open Source Leadership & Honors',
+      subtitle: 'Campus Lead 2026, Apertre 3.0 & Hacktoberfest, 2x Hackathon Finalist',
       category: 'Navigation',
-      icon: <Award className="w-4 h-4 text-blue-400" />,
+      icon: <Award className="w-4 h-4 text-emerald-400" />,
       run: () => {
         onClose();
         onNavigateSection('certifications');

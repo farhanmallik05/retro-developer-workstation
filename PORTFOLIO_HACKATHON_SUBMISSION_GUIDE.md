@@ -54,9 +54,9 @@ Skillinf judges evaluate submissions on **7 explicit dimensions**. Here is how t
 │    & Interactivity      │ rain, in-browser Cloud Architecture Sandbox with   │
 │                         │ real-time CDK v2 export, and Bedrock AI Twin chat.│
 ├─────────────────────────┼───────────────────────────────────────────────────┤
-│ 7. Professionalism &    │ Verified AWS credentials (SAA-C03: 890, CLF-C02:  │
-│    Attention to Detail  │ 920), offline resilient message queue (DynamoDB   │
-│                         │ outbox), and 6/6 automated test suite passing.    │
+│ 7. Professionalism &    │ Verified Open Source Leadership (Campus Lead 2026),│
+│    Attention to Detail  │ Kestra & SlothOps contributions, 2x Finalist,      │
+│                         │ and 6/6 automated test suite passing.              │
 └─────────────────────────┴───────────────────────────────────────────────────┘
 ```
 
@@ -139,8 +139,8 @@ Designed as a high-density, retro-futuristic engineering mainframe for the Skill
 4. **Silicon Chipset Pinouts & Stack Map:**
    - Hardware-inspired pinout architecture mapping 32 core registers across Cloud Infrastructure, Compilers/Runtimes, AI Agent Engines, and Reliability Patterns.
 
-5. **Crypto-Verified AWS Certifications:**
-   - Proctored Amazon Web Services credentials: SAA-C03 (Score 890 / 1000) and CLF-C02 (Score 920 / 1000) with interactive AWS Quiz simulator.
+5. **Open Source Leadership & Technical Credentials:**
+   - Campus Lead 2026 (Open Source Connect Global), Apertre 3.0 & Hacktoberfest contributor (Kestra & SlothOps), 2x Hackathon Finalist, and verified credentials in Agentic AI with n8n and Generative AI.
 
 6. **Phosphor CRT Scanlines & Visual Polish:**
    - Toggleable CRT scanline electron beam sweep, green phosphor glow effects, and zero cumulative layout shift (CLS).
@@ -159,9 +159,11 @@ Under Skillinf rules, you must upload your **latest resume in PDF format** along
   - Location: Greater Delhi Area, India (Zip: 201310)
   - Portfolio URL: `https://farhanmallik.netlify.app`
   - Connect Hub: `https://beacons.ai/farhanmallik`
-- [x] **Certifications Section:**
-  - AWS Certified Solutions Architect – Associate (SAA-C03) | Score: 890 / 1000
-  - AWS Certified Cloud Practitioner (CLF-C02) | Score: 920 / 1000
+- [x] **Open Source Leadership & Certifications Section:**
+  - Campus Lead 2026 | Open Source Connect Global
+  - 2x Hackathon Finalist | Paranox Hackathon & Buildathon 1.0 (KCC ITM)
+  - Agentic AI Workflows with n8n (AnalytixLabs, 2025)
+  - Introduction to Generative AI & Prompting (NSDC & LetsUpgrade, 2025)
 - [x] **Highlighted Projects:**
   - EcoRoute: Clean Energy & EV Grid Navigator
   - CloudOps Swarm: Autonomous AWS Incident Triaging (Strands Agents SDK + Bedrock)

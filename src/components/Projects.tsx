@@ -19,75 +19,109 @@ export const Projects: React.FC = () => {
 
   const dossiers: ProjectDossier[] = [
     {
-      id: 'ecoroute',
-      code: 'DOSSIER_01 // GEOSPATIAL_CLOUD_CORE',
-      title: 'EcoRoute: Clean Energy & EV Grid Navigator',
-      category: 'Geospatial Cloud Architecture',
-      stack: ['Amazon Location Service', 'MapLibre GL', 'Cognito Identity Pools', 'Turf.js', 'NREL Open API'],
+      id: 'ghar-search',
+      code: 'DOSSIER_01 // AGENTIC_PROPERTY_DILIGENCE',
+      title: 'Ghar Search: Agentic Property Due-Diligence Platform',
+      category: 'Parallel Multi-Agent Verification Platform',
+      stack: ['Next.js 14', 'LangGraph (0.2)', 'TinyFish Web Agents', 'FastAPI', 'Docker Compose', 'Pytest', 'Tailwind CSS'],
       description:
-        'High-performance geospatial engine that ingests 45,000+ alternative fueling stations across North America. Calculates real-time EV corridor routes, simulates cold-weather battery temperature degradation, and computes corridor buffer zones using Turf.js.',
+        'Architected an agentic property due-diligence platform that converts Indian real-estate listings into structured evidence dossiers in under 90 seconds. Runs 6 parallel LangGraph workers across 1.5L+ RERA records, eCourts/NCLT insolvency signals, statutory approvals, and promoter track records to generate a deterministic 0–100 Trust Score.',
       telemetry: [
-        { label: 'DATA_POINTS', value: '45,000+ Fuel Stations', color: 'text-cyan-400' },
-        { label: 'TILE_LATENCY', value: '<45ms (P99 Cached)', color: 'text-emerald-400' },
-        { label: 'CO2_OFFSET', value: '0.41 kg/mi Tracked', color: 'text-amber-400' },
-        { label: 'ENGINE', value: 'Serverless Route Calculator', color: 'text-purple-400' },
+        { label: 'RERA_RECORDS', value: '1.5L+ Records Queried', color: 'text-cyan-400' },
+        { label: 'AI_WORKERS', value: '6 Parallel LangGraph Agents', color: 'text-purple-400' },
+        { label: 'TEST_SUITE', value: '140 Automated Tests (100% Pass)', color: 'text-emerald-400' },
+        { label: 'SPEED', value: '<90s Dossier Turnaround', color: 'text-amber-400' },
       ],
-      repoUrl: 'https://github.com/farhan/ecoroute-ev-map',
-      liveUrl: 'http://localhost:3000',
-      status: 'VERIFIED // DUAL_SUBMISSION_READY',
+      repoUrl: 'https://github.com/farhanmallik05/ghar-search',
+      status: 'VERIFIED // PRODUCTION_READY',
     },
     {
       id: 'cloudops-swarm',
-      code: 'DOSSIER_02 // MULTI_AGENT_AI_SYSTEM',
+      code: 'DOSSIER_02 // MULTI_AGENT_AI_SRE',
       title: 'CloudOps Swarm: Autonomous AWS Incident Triaging & Self-Healing',
-      category: 'Autonomous Multi-Agent AI SRE',
-      stack: ['Strands Agents SDK', 'Amazon Bedrock (Claude 3.5 Sonnet)', 'CloudWatch Insights', 'AWS Lambda', 'DynamoDB'],
+      category: 'Autonomous Multi-Agent AI Reliability',
+      stack: ['Strands Agents SDK', 'Amazon Bedrock (Claude 3.5 Sonnet & Haiku)', 'CloudWatch Insights', 'Docker', 'Python'],
       description:
-        'Autonomous multi-agent SRE swarm designed to triage AWS cloud incidents in under 60 seconds. Four specialized agents (Triage, Log Diagnostics, Code Diff Analysis, Remediation Synthesizer) collaborate via Strands SDK to pinpoint root causes and generate safety-verified recovery pull requests.',
+        'Autonomous multi-agent SRE swarm designed to triage AWS cloud incidents in under 30 seconds. Four specialized agents (Triage, Log Diagnostics, Code Diff Analysis, Remediation Synthesizer) collaborate via Strands SDK to pinpoint root causes, simulate safety blast-radii, and generate safety-verified recovery pull requests.',
       telemetry: [
         { label: 'BENCHMARK_MTTD', value: '28 Seconds (vs 45min)', color: 'text-emerald-400' },
         { label: 'ACCURACY', value: '100% (5/5 Archetypes)', color: 'text-cyan-400' },
         { label: 'SWARM_AGENTS', value: '4 Autonomous Roles', color: 'text-purple-400' },
-        { label: 'CHAOS_TESTED', value: 'Connection Pool Leaks', color: 'text-amber-400' },
+        { label: 'FINOPS_COST', value: '$0.01095 USD / Incident', color: 'text-amber-400' },
       ],
-      repoUrl: 'https://github.com/farhan/cloudops-strands-swarm',
-      liveUrl: '#',
+      repoUrl: 'https://github.com/farhanmallik05/cloudops-incident-swarm',
+      liveUrl: 'https://farhanmallik05.github.io/cloudops-incident-swarm/',
       status: 'VERIFIED // BENCHMARK_PASSED',
     },
     {
-      id: 'serverless-resilient',
-      code: 'DOSSIER_03 // FAULT_TOLERANT_SYSTEMS',
-      title: 'Resilient Event-Driven Transaction Processing Hub',
-      category: 'Distributed Systems Architecture',
-      stack: ['AWS Lambda', 'Amazon DynamoDB', 'Amazon SQS DLQ', 'API Gateway', 'AWS CDK v2'],
+      id: 'forkfix-specterlens',
+      code: 'DOSSIER_03 // AUTONOMOUS_DEBUGGING_AGENTS',
+      title: 'ForkFix & SpecterLens: Autonomous AI Debugging Agents',
+      category: 'Deterministic AI Coding & Multimodal Archeology',
+      stack: ['Python', 'Google Gemma 4', 'NVIDIA Nemotron', 'Nebius', 'Tavily', 'Autonomous AI Agents'],
       description:
-        'Mission-critical financial transaction processing pipeline. Employs idempotent request deduplication, exponential backoff with full jitter, SQS Dead Letter Queues, and DynamoDB single-table design with automated circuit breakers to withstand network partitions.',
+        'Built an autonomous coding agent (ForkFix) that snapshots failing test suites, spawns 4 parallel sandboxed execution realities on an NVIDIA Nemotron model ladder, and proves code fixes against deterministic test oracles. Paired with SpecterLens, a visual-to-patch diagnostic agent powered by Google Gemma 4 that inspects UI states.',
       telemetry: [
-        { label: 'THROUGHPUT', value: '5,000 req/sec Sustained', color: 'text-cyan-400' },
-        { label: 'LOST_TRANSACTIONS', value: '0 (Under Chaos Load)', color: 'text-emerald-400' },
-        { label: 'PROVISIONING', value: '100% AWS CDK v2', color: 'text-purple-400' },
-        { label: 'RTO / RPO', value: '<15s / 0s (Zero Loss)', color: 'text-amber-400' },
+        { label: 'EXECUTION_MODELS', value: 'NVIDIA Nemotron + Gemma 4', color: 'text-cyan-400' },
+        { label: 'PARALLEL_REALITIES', value: '4 Sandboxed Reality Forks', color: 'text-purple-400' },
+        { label: 'DIAGNOSTIC_TYPE', value: 'Visual-to-Patch Archeology', color: 'text-emerald-400' },
+        { label: 'VERIFICATION', value: 'Deterministic Test Oracles', color: 'text-amber-400' },
       ],
-      repoUrl: 'https://github.com/farhan/serverless-resilient-hub',
-      status: 'VERIFIED // ARCHITECTURE_CERTIFIED',
+      repoUrl: 'https://github.com/farhanmallik05/forkfix',
+      status: 'VERIFIED // RESEARCH_PROTOTYPE',
     },
     {
-      id: 'retro-portfolio',
-      code: 'DOSSIER_04 // DUAL_HACKATHON_CHASSIS',
-      title: 'Neo-Retro Developer Workstation & Architecture Sandbox',
-      category: 'Frontend Engineering & Systems CAD',
+      id: 'ecoroute',
+      code: 'DOSSIER_04 // GEOSPATIAL_CLOUD_CORE',
+      title: 'EcoRoute: Clean Energy & EV Grid Navigator',
+      category: 'Geospatial Cloud Architecture & Navigation',
+      stack: ['Amazon Location Service', 'MapLibre GL', 'Cognito Identity Pools', 'Turf.js', 'Vite', 'TypeScript'],
+      description:
+        'High-performance geospatial engine that ingests 45,000+ alternative fueling stations across North America. Calculates real-time EV corridor routes, simulates cold-weather battery temperature degradation, and computes corridor buffer zones using Turf.js with sub-second vector tiles.',
+      telemetry: [
+        { label: 'DATA_POINTS', value: '45,000+ Fuel Stations', color: 'text-cyan-400' },
+        { label: 'TILE_LATENCY', value: '<45ms (P99 Cached)', color: 'text-emerald-400' },
+        { label: 'CO2_OFFSET', value: '0.41 kg/mi Tracked', color: 'text-amber-400' },
+        { label: 'DEPLOYMENT', value: 'AWS Amplify + Amazon Trust SSL', color: 'text-purple-400' },
+      ],
+      repoUrl: 'https://github.com/farhanmallik05/ecoroute-ev-map',
+      liveUrl: 'https://main.d2xgltmuyxryz1.amplifyapp.com',
+      status: 'VERIFIED // PRODUCTION_DEPLOYED',
+    },
+    {
+      id: 'cyberfolio',
+      code: 'DOSSIER_05 // INTERACTIVE_WORKSTATION',
+      title: 'Cyberfolio: Retro Developer Workstation & Systems CAD',
+      category: 'Frontend Craft & High-Density UI/UX',
       stack: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'AWS CDK Generator', 'Bedrock Claude 3.5 AI Twin'],
       description:
-        'Award-winning developer portfolio engineered with retro CRT aesthetics, interactive terminal CLI, live Cloud Architecture Sandbox with CDK v2 synthesis, and Bedrock Claude 3.5 AI Twin. Tailored for dual submission to AWS Student Builder Challenge & Skillinf Portfolio Design Hackathon 2026.',
+        'High-craft developer workstation fusing authentic CRT scanlines, an interactive UNIX CLI shell, in-browser Cloud Architecture CAD modeler with live AWS CDK v2 synthesis, and Bedrock AI Twin. Built with 100% test coverage and zero layout shift.',
       telemetry: [
         { label: 'TEST_COVERAGE', value: '6/6 Passed (100%)', color: 'text-emerald-400' },
         { label: 'PERFORMANCE', value: '0.000 CLS / <3s Build', color: 'text-cyan-400' },
-        { label: 'SUBMISSIONS', value: 'AWS + Skillinf 2026', color: 'text-amber-400' },
-        { label: 'SUPERPOWERS', value: 'Terminal CLI + Sandbox', color: 'text-purple-400' },
+        { label: 'HOSTING', value: 'Enforced HTTPS Edge CDN', color: 'text-amber-400' },
+        { label: 'SUPERPOWERS', value: 'Terminal CLI + Cloud CAD', color: 'text-purple-400' },
       ],
-      repoUrl: 'https://github.com/farhan/aws-builder-superpower-portfolio',
-      liveUrl: 'http://localhost:3001',
+      repoUrl: 'https://github.com/farhanmallik05/retro-developer-workstation',
+      liveUrl: 'https://farhanmallik05.github.io/retro-developer-workstation/',
       status: 'VERIFIED // HACKATHON_NOMINEE',
+    },
+    {
+      id: 'slothops-kestra',
+      code: 'DOSSIER_06 // OPEN_SOURCE_CONTRIBUTIONS',
+      title: 'SlothOps & Kestra Open-Source Contributions',
+      category: 'Open Source Community & Cognitive Conservation',
+      stack: ['Vue.js', 'TypeScript', 'Scoped SCSS (--ks-*)', 'Google Gemma 2', 'TabPFN', 'Docker'],
+      description:
+        'Active open-source engineering contributions across Apertre 3.0, Hacktoberfest, and Open Source Connect Global (Campus Lead 2026). Migrated Kestra core Vue/TypeScript components to scoped SCSS design-system tokens and built SlothOps, an open-weight Gemma 2 + TabPFN agent.',
+      telemetry: [
+        { label: 'LEADERSHIP', value: 'Campus Lead 2026 (OSCG)', color: 'text-amber-400' },
+        { label: 'COMMUNITY', value: 'Hacktoberfest 2025 & 2026', color: 'text-cyan-400' },
+        { label: 'KESTRA_CONTRIB', value: 'Scoped SCSS Design Tokens', color: 'text-emerald-400' },
+        { label: 'SLOTHOPS', value: 'Gemma 2 + TabPFN Agent', color: 'text-purple-400' },
+      ],
+      repoUrl: 'https://github.com/farhanmallik05/slothops',
+      status: 'VERIFIED // OPEN_SOURCE_LEAD',
     },
   ];
 
@@ -109,7 +143,7 @@ export const Projects: React.FC = () => {
             </p>
           </div>
           <div className="text-xs font-mono text-slate-500">
-            TOTAL_DOSSIERS: [ 04 ] // CLASSIFICATION: PUBLIC
+            TOTAL_DOSSIERS: [ 06 ] // CLASSIFICATION: PUBLIC
           </div>
         </div>
 

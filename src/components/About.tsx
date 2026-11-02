@@ -5,35 +5,35 @@ export const About: React.FC = () => {
   const chapters = [
     {
       step: '01',
-      title: 'FOUNDATIONS_&_KERNEL_ORIGINS',
-      period: '2022 – 2023',
+      title: 'FOUNDATIONS_&_COMPUTER_SCIENCE',
+      period: '2021 – 2024',
       description:
-        'Commenced technical immersion in Computer Science and Information Technology. Mastered memory layouts, algorithmic time/space complexities, Linux systems administration, and low-level socket networking.',
-      tags: ['C/C++', 'Data Structures', 'Linux Internals', 'Networking'],
+        'Completed Class 10th (2021) and Class 12th PCM (2023) at D.A.V. Centenary Public School, Rohtak, before entering B.Tech in CSE & IT (2024–2028) at KCC Institute of Technology and Management, Greater Noida. Mastered C/C++, Data Structures & Algorithms, Linux internals, and web fundamentals.',
+      tags: ['C/C++', 'DSA Fundamentals', 'Linux Internals', 'KCC ITM'],
     },
     {
       step: '02',
-      title: 'FULL_STACK_SYSTEMS_CRAFT',
-      period: '2023 – 2024',
+      title: 'FULL_STACK_&_HIGH_CRAFT_FRONTENDS',
+      period: '2024 – 2025',
       description:
-        'Engineered responsive, tactile web interfaces with TypeScript, React, and Vite. Designed deterministic state containers, custom design systems, and resilient REST/WebSocket APIs with sub-50ms round-trips.',
-      tags: ['TypeScript', 'React / Vite', 'REST & WebSockets', 'PostgreSQL'],
+        'Engineered responsive, tactile web interfaces with Next.js 14 (App Router), React, TypeScript, Tailwind CSS, and Framer Motion. Focused on micro-interactions, scoped design tokens, and containerized runtime deployments with Docker and automated CI validation.',
+      tags: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     },
     {
       step: '03',
-      title: 'AWS_CLOUD_CERTIFICATIONS_&_SRE',
-      period: '2024 – 2025',
+      title: 'OPEN_SOURCE_LEADERSHIP_&_COMMUNITY',
+      period: '2025 – 2026',
       description:
-        'Earned official AWS proctored certifications: Solutions Architect Associate (SAA-C03: 890/1000) and Cloud Practitioner (CLF-C02: 920/1000). Built serverless architectures with Lambda, DynamoDB single-table designs, and SQS Dead Letter Queues.',
-      tags: ['AWS SAA-C03', 'AWS CLF-C02', 'Lambda Serverless', 'DynamoDB'],
+        'Appointed Campus Lead 2026 at Open Source Connect Global, mentoring student developers and resolving frontend issues. Contributed to Kestra (scoped SCSS design token migration), participated in Apertre 3.0 and Hacktoberfest 2025/2026, and architected SlothOps (open-weight Gemma 2 + TabPFN agent).',
+      tags: ['Campus Lead 2026', 'Kestra Contributor', 'Hacktoberfest', 'SlothOps'],
     },
     {
       step: '04',
-      title: 'AUTONOMOUS_AI_SWARMS_&_GEOSPATIAL',
-      period: '2025 – PRESENT',
+      title: 'AGENTIC_AI_PLATFORMS_&_MULTI_AGENT_SWARMS',
+      period: '2026 – PRESENT',
       description:
-        'Pioneering autonomous multi-agent incident triaging swarms with the Strands Agents SDK and Amazon Bedrock (Claude 3.5 Sonnet). Architected EcoRoute on Amazon Location Service, processing 45,000+ alternative fueling stations for clean energy navigation.',
-      tags: ['Strands Agents SDK', 'Amazon Bedrock', 'Location Service', 'Multi-Agent SRE'],
+        'Pioneered parallel multi-agent platforms: Ghar Search (LangGraph 6-agent due-diligence verifying 1.5L+ RERA records in <90s across 140 automated tests), ForkFix (parallel sandboxed reality debugging with NVIDIA Nemotron), and CloudOps Swarm (Strands SDK + Bedrock SRE self-healing).',
+      tags: ['LangGraph', 'NVIDIA Nemotron', 'TinyFish Agents', 'Gemma 4'],
     },
   ];
 
@@ -83,23 +83,27 @@ export const About: React.FC = () => {
               <div className="space-y-2 pt-2 text-slate-300">
                 <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
                   <span className="text-slate-500">DEGREE:</span>
-                  <span className="font-semibold text-white">B.Tech CS (IT Spec)</span>
+                  <span className="font-semibold text-white">B.Tech CSE &amp; IT ('28)</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
+                  <span className="text-slate-500">INSTITUTE:</span>
+                  <span className="font-semibold text-white">KCC ITM, Greater Noida</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
+                  <span className="text-slate-500">LEADERSHIP:</span>
+                  <span className="font-semibold text-amber-400">Campus Lead '26 (OSCG)</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
+                  <span className="text-slate-500">HONORS:</span>
+                  <span className="font-semibold text-emerald-400">2x Hackathon Finalist</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
+                  <span className="text-slate-500">OPEN_SOURCE:</span>
+                  <span className="font-semibold text-cyan-400">Kestra &amp; Apertre 3.0</span>
                 </div>
                 <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
                   <span className="text-slate-500">LOCATION:</span>
-                  <span className="font-semibold text-white">Delhi NCR (201310)</span>
-                </div>
-                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                  <span className="text-slate-500">AWS_SAA:</span>
-                  <span className="font-semibold text-emerald-400">Score 890 / 1000</span>
-                </div>
-                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                  <span className="text-slate-500">AWS_CLF:</span>
-                  <span className="font-semibold text-cyan-400">Score 920 / 1000</span>
-                </div>
-                <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                  <span className="text-slate-500">DUAL_HACK:</span>
-                  <span className="font-semibold text-amber-400">AWS + Skillinf '26</span>
+                  <span className="font-semibold text-white">Greater Noida, India</span>
                 </div>
               </div>
 
