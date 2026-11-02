@@ -9,6 +9,7 @@ interface NavbarProps {
   onOpenCommandPalette?: () => void;
   isCrtActive?: boolean;
   onToggleCrt?: () => void;
+  activeSection?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -19,6 +20,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCommandPalette,
   isCrtActive = true,
   onToggleCrt,
+  activeSection = 'hero',
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
@@ -106,43 +108,71 @@ export const Navbar: React.FC<NavbarProps> = ({
         <nav className="hidden lg:flex items-center gap-1 text-[11px] font-semibold text-slate-400">
           <button
             onClick={() => scrollTo('hero')}
-            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'hero'
+                ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold glow-emerald shadow-sm'
+                : 'hover:text-emerald-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 01_INIT ]
           </button>
           <button
             onClick={() => scrollTo('dossiers')}
-            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'dossiers'
+                ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold glow-emerald shadow-sm'
+                : 'hover:text-emerald-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 02_DOSSIERS ]
           </button>
           <button
             onClick={() => scrollTo('sandbox')}
-            className="px-2.5 py-1 hover:text-cyan-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'sandbox'
+                ? 'bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 font-bold glow-cyan shadow-sm'
+                : 'hover:text-cyan-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 03_SANDBOX ]
           </button>
           <button
             onClick={() => scrollTo('stack')}
-            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'stack'
+                ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold glow-emerald shadow-sm'
+                : 'hover:text-emerald-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 04_CHIPSET ]
           </button>
           <button
             onClick={() => scrollTo('certifications')}
-            className="px-2.5 py-1 hover:text-amber-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'certifications'
+                ? 'bg-amber-950/80 border border-amber-500/50 text-amber-300 font-bold glow-amber shadow-sm'
+                : 'hover:text-amber-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 05_OPEN_SOURCE ]
           </button>
           <button
             onClick={() => scrollTo('about')}
-            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'about'
+                ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold glow-emerald shadow-sm'
+                : 'hover:text-emerald-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 06_BIO ]
           </button>
           <button
             onClick={() => scrollTo('contact')}
-            className="px-2.5 py-1 hover:text-emerald-400 hover:bg-slate-800/60 rounded transition-colors"
+            className={`px-2.5 py-1 rounded transition-all duration-200 ${
+              activeSection === 'contact'
+                ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold glow-emerald shadow-sm'
+                : 'hover:text-emerald-400 hover:bg-slate-800/60'
+            }`}
           >
             [ 07_TRANSMIT ]
           </button>
@@ -215,37 +245,71 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <button
             onClick={() => scrollTo('hero')}
-            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-slate-300"
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'hero'
+                ? 'bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold'
+                : 'hover:bg-slate-800 text-slate-300'
+            }`}
           >
             &gt; 01 // SYSTEM OVERVIEW
           </button>
           <button
             onClick={() => scrollTo('dossiers')}
-            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-slate-300"
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'dossiers'
+                ? 'bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold'
+                : 'hover:bg-slate-800 text-slate-300'
+            }`}
           >
-            &gt; 02 // PROJECT DOSSIERS (ECOROUTE &amp; SWARM)
+            &gt; 02 // PROJECT DOSSIERS
           </button>
           <button
             onClick={() => scrollTo('sandbox')}
-            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-cyan-300"
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'sandbox'
+                ? 'bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-bold'
+                : 'hover:bg-slate-800 text-cyan-300'
+            }`}
           >
             &gt; 03 // CLOUD ARCHITECTURE SANDBOX
           </button>
           <button
             onClick={() => scrollTo('stack')}
-            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-slate-300"
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'stack'
+                ? 'bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold'
+                : 'hover:bg-slate-800 text-slate-300'
+            }`}
           >
             &gt; 04 // TECH STACK PINOUT
           </button>
           <button
             onClick={() => scrollTo('certifications')}
-            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-amber-300"
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'certifications'
+                ? 'bg-amber-950/80 border border-amber-500/40 text-amber-300 font-bold'
+                : 'hover:bg-slate-800 text-amber-300'
+            }`}
           >
             &gt; 05 // OPEN SOURCE &amp; LEADERSHIP
           </button>
           <button
+            onClick={() => scrollTo('about')}
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'about'
+                ? 'bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold'
+                : 'hover:bg-slate-800 text-slate-300'
+            }`}
+          >
+            &gt; 06 // OPERATOR BIOGRAPHY
+          </button>
+          <button
             onClick={() => scrollTo('contact')}
-            className="block w-full text-left py-1.5 px-2 hover:bg-slate-800 rounded text-emerald-400 font-bold"
+            className={`block w-full text-left py-1.5 px-2 rounded ${
+              activeSection === 'contact'
+                ? 'bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold'
+                : 'hover:bg-slate-800 text-emerald-400 font-bold'
+            }`}
           >
             &gt; 07 // TRANSMIT MESSAGE / HIRE
           </button>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Award, CheckCircle, ExternalLink, ShieldCheck, Sparkles, Terminal, GitPullRequest, Users, Trophy } from 'lucide-react';
+import { RetroReveal } from './RetroReveal';
+import { RetroDecoderText } from './RetroDecoderText';
 
 interface CertificationsProps {
   onOpenQuiz?: () => void;
@@ -69,69 +71,74 @@ export const Certifications: React.FC<CertificationsProps> = ({ onOpenQuiz }) =>
     <section id="certifications" className="py-16 sm:py-24 border-b border-slate-800 bg-[#080c14]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-800 gap-4">
-          <div>
-            <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
-              <span className="w-2 h-2 bg-amber-500 rounded-none inline-block"></span>
-              <span>SECTION_05 // OPEN_SOURCE_LEADERSHIP_&amp;_HONORS</span>
+        <RetroReveal animation="fade-up">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 border-b border-slate-800 gap-4">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
+                <span className="w-2 h-2 bg-amber-500 rounded-none inline-block animate-amber-pulse"></span>
+                <RetroDecoderText text="SECTION_05 // OPEN_SOURCE_LEADERSHIP_&_HONORS" />
+              </div>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mt-1">
+                Open Source Contributions &amp; Honors
+              </h2>
+              <p className="text-slate-400 text-sm font-mono mt-2 max-w-2xl">
+                Verified community leadership, active open-source contributions across Kestra and Hacktoberfest, hackathon finalist honors, and technical credentials.
+              </p>
             </div>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl text-white tracking-tight mt-1">
-              Open Source Contributions &amp; Honors
-            </h2>
-            <p className="text-slate-400 text-sm font-mono mt-2 max-w-2xl">
-              Verified community leadership, active open-source contributions across Kestra and Hacktoberfest, hackathon finalist honors, and technical credentials.
-            </p>
-          </div>
 
-          {onOpenQuiz && (
-            <button
-              onClick={onOpenQuiz}
-              className="flex items-center gap-2 px-4 py-2 rounded bg-amber-950/60 border border-amber-500/50 hover:border-amber-400 text-amber-300 hover:text-white transition-all text-xs font-bold tracking-wider uppercase font-mono shadow-[0_0_15px_rgba(245,158,11,0.2)] active:scale-95"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>[ LAUNCH_SKILLS_CHALLENGE.SH ]</span>
-            </button>
-          )}
-        </div>
+            {onOpenQuiz && (
+              <button
+                onClick={onOpenQuiz}
+                className="flex items-center gap-2 px-4 py-2 rounded bg-amber-950/60 border border-amber-500/50 hover:border-amber-400 text-amber-300 hover:text-white transition-all text-xs font-bold tracking-wider uppercase font-mono shadow-[0_0_15px_rgba(245,158,11,0.2)] active:scale-95 glitch-hover"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>[ LAUNCH_SKILLS_CHALLENGE.SH ]</span>
+              </button>
+            )}
+          </div>
+        </RetroReveal>
 
         {/* Credentials Grid */}
         <div className="grid md:grid-cols-2 gap-8 mt-10">
-          {contributions.map((c) => (
-            <div
-              key={c.code}
-              className="p-6 sm:p-8 rounded-lg bg-[#0b101c] border border-slate-800 hover:border-amber-500/50 transition-all font-mono shadow-xl relative overflow-hidden group"
-            >
-              {/* Subtle top indicator */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
-                <div className="flex items-center gap-2">
-                  {c.icon}
-                  <span className="text-amber-400 font-bold">{c.code}</span>
-                </div>
-                <span className={`font-bold text-[11px] px-2 py-0.5 rounded border ${c.badgeColor}`}>
-                  {c.status}
-                </span>
-              </div>
-
-              <div className="mt-4 space-y-1">
-                <h3 className="font-display font-bold text-lg sm:text-xl text-white group-hover:text-amber-300 transition-colors">
-                  {c.title}
-                </h3>
-                <p className="text-xs text-slate-400">{c.role}</p>
-              </div>
-
-              {/* Verified Competencies */}
-              <div className="mt-5 space-y-2 border-t border-slate-800/80 pt-4">
-                <span className="block text-[10px] uppercase text-slate-500 font-bold">
-                  VERIFIED_CONTRIBUTIONS_&amp;_MILESTONES:
-                </span>
-                {c.highlights.map((h, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs text-slate-300">
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{h}</span>
+          {contributions.map((c, idx) => (
+            <RetroReveal key={c.code} animation="fade-up" delay={idx * 90} className="h-full">
+              <div
+                className="p-6 sm:p-8 rounded-lg bg-[#0b101c] border border-slate-800 hover:border-amber-500/50 transition-all font-mono shadow-xl relative overflow-hidden group glitch-hover h-full flex flex-col justify-between"
+              >
+                <div>
+                  {/* Subtle top indicator */}
+                  <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
+                    <div className="flex items-center gap-2">
+                      {c.icon}
+                      <span className="text-amber-400 font-bold">{c.code}</span>
+                    </div>
+                    <span className={`font-bold text-[11px] px-2 py-0.5 rounded border ${c.badgeColor}`}>
+                      {c.status}
+                    </span>
                   </div>
-                ))}
+
+                  <div className="mt-4 space-y-1">
+                    <h3 className="font-display font-bold text-lg sm:text-xl text-white group-hover:text-amber-300 transition-colors">
+                      {c.title}
+                    </h3>
+                    <p className="text-xs text-slate-400">{c.role}</p>
+                  </div>
+
+                  {/* Verified Competencies */}
+                  <div className="mt-5 space-y-2 border-t border-slate-800/80 pt-4">
+                    <span className="block text-[10px] uppercase text-slate-500 font-bold">
+                      VERIFIED_CONTRIBUTIONS_&amp;_MILESTONES:
+                    </span>
+                    {c.highlights.map((h, hidx) => (
+                      <div key={hidx} className="flex items-start gap-2 text-xs text-slate-300">
+                        <CheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                        <span>{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            </RetroReveal>
           ))}
         </div>
       </div>

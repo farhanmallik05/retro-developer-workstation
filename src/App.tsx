@@ -13,6 +13,8 @@ import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { AITwinModal } from './components/AITwinModal';
 import { CommandPalette } from './components/CommandPalette';
 import { CertificationQuizModal } from './components/CertificationQuizModal';
+import { ScrollTelemetryHud } from './components/ScrollTelemetryHud';
+import { ScrollToTopBooster } from './components/ScrollToTopBooster';
 import { Terminal, Cpu, Cloud, Bot, Sparkles } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -22,6 +24,7 @@ export const App: React.FC = () => {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [isCrtActive, setIsCrtActive] = useState(true);
+  const [activeSection, setActiveSection] = useState('hero');
 
   const handleNavigateSection = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -30,6 +33,9 @@ export const App: React.FC = () => {
 
   return (
     <div className={`relative min-h-screen bg-[#080c14] text-slate-100 font-mono antialiased ${isCrtActive ? 'crt-scanlines' : ''}`}>
+      {/* CRT Horizontal Electron Beam Raster Sweep */}
+      {isCrtActive && <div className="crt-beam-sweep" aria-hidden="true" />}
+
       {/* 1. Retro Terminal Navbar */}
       <Navbar
         onOpenTerminal={() => setIsTerminalOpen(true)}
@@ -39,7 +45,11 @@ export const App: React.FC = () => {
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         isCrtActive={isCrtActive}
         onToggleCrt={() => setIsCrtActive((prev) => !prev)}
+        activeSection={activeSection}
       />
+
+      {/* Real-Time Scroll Depth & Memory Telemetry HUD */}
+      <ScrollTelemetryHud onSectorChange={setActiveSection} />
 
       {/* Main Workstation Modules */}
       <main className="relative z-10">
@@ -103,6 +113,9 @@ export const App: React.FC = () => {
           ⌘K
         </button>
       </div>
+
+      {/* Floating Tactical Booster (Scroll-to-Top) */}
+      <ScrollToTopBooster />
 
       {/* Superpower Modals */}
       <InteractiveTerminal

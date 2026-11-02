@@ -43,13 +43,13 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
             <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block animate-phosphor-pulse"></span>
             <span className="ml-2 font-mono text-slate-300 font-bold">farhan@mainframe:~/portfolio</span>
           </div>
           <div className="hidden sm:flex items-center gap-3 font-mono text-[10px] text-emerald-400">
-            <span>UPTIME: 99.98%</span>
+            <span className="animate-phosphor-pulse font-bold">UPTIME: 99.98%</span>
             <span>MEMORY: 128MB</span>
-            <span className="text-amber-400">DUAL_FINALIST: YES</span>
+            <span className="text-amber-400 animate-amber-pulse font-bold">DUAL_FINALIST: YES</span>
           </div>
         </div>
 
