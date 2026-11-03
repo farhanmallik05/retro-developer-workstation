@@ -178,3 +178,4 @@ export const SectorJumpOverlay: React.FC<SectorJumpOverlayProps> = ({
     </div>
   );
 };
+

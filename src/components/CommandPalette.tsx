@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Terminal, Layers, Bot, Mail, Award, FolderGit2, X, Sparkles } from 'lucide-react';
+import { Search, Terminal, Layers, Bot, Mail, Award, FolderGit2, X, Sparkles, Palette, Zap } from 'lucide-react';
+import { themeEngine } from '../utils/themeEngine';
+import { retroAudio } from '../utils/retroAudio';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -11,6 +13,7 @@ interface CommandPaletteProps {
   onOpenQuiz?: () => void;
   onOpenArcade?: () => void;
   onReboot?: () => void;
+  onDegauss?: () => void;
   onNavigateSection: (sectionId: string) => void;
 }
 
@@ -33,6 +36,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onOpenQuiz,
   onOpenArcade,
   onReboot,
+  onDegauss,
   onNavigateSection,
 }) => {
   const [query, setQuery] = useState('');
@@ -58,6 +62,30 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   if (!isOpen) return null;
 
   const actions: CommandAction[] = [
+    {
+      id: 'cmd-degauss',
+      title: 'Degauss CRT Monitor Screen',
+      subtitle: 'Discharge electromagnetic coil with phosphor distortion shake & audio pulse',
+      category: 'Superpower',
+      icon: <Zap className="w-4 h-4 text-amber-400" />,
+      run: () => {
+        onClose();
+        retroAudio.playDegaussCoil();
+        if (onDegauss) onDegauss();
+      },
+    },
+    {
+      id: 'cmd-theme',
+      title: 'Cycle CRT Color Phosphor Palette',
+      subtitle: 'Switch between P1 Emerald Green, P3 Amber, Cyber Cyan, and P4 White',
+      category: 'Superpower',
+      icon: <Palette className="w-4 h-4 text-cyan-400" />,
+      run: () => {
+        onClose();
+        themeEngine.cycleNextTheme();
+        retroAudio.playTerminalBeep(980, 0.05);
+      },
+    },
     {
       id: 'cmd-reboot',
       title: 'Reboot Workstation (BIOS POST Screen)',

@@ -43,3 +43,4 @@ class NavigationEffectsEngine {
 }
 
 export const navigationEffects = new NavigationEffectsEngine();
+

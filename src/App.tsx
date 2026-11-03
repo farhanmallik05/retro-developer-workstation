@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
@@ -20,6 +20,7 @@ import { SectorJumpOverlay } from './components/SectorJumpOverlay';
 import { BackgroundStarfield } from './components/BackgroundStarfield';
 import { RetroPhosphorCursor } from './components/RetroPhosphorCursor';
 import { navigationEffects, JumpAnimationMode } from './utils/navigationEffects';
+import { themeEngine } from './utils/themeEngine';
 import { retroAudio } from './utils/retroAudio';
 import { Terminal, Cpu, Cloud, Bot, Sparkles } from 'lucide-react';
 
@@ -32,6 +33,25 @@ export const App: React.FC = () => {
   const [isArcadeOpen, setIsArcadeOpen] = useState(false);
   const [isCrtActive, setIsCrtActive] = useState(true);
   const [activeSection, setActiveSection] = useState('hero');
+
+  // CRT Phosphor Color Theme State
+  const [currentThemeClass, setCurrentThemeClass] = useState<string>(
+    () => themeEngine.getTheme().cssClass
+  );
+  const [isDegaussing, setIsDegaussing] = useState<boolean>(false);
+
+  useEffect(() => {
+    return themeEngine.subscribe((theme) => {
+      setCurrentThemeClass(theme.cssClass);
+    });
+  }, []);
+
+  const handleDegauss = () => {
+    setIsDegaussing(true);
+    setTimeout(() => {
+      setIsDegaussing(false);
+    }, 550);
+  };
 
   // Page Loading BIOS POST State
   const [isBooting, setIsBooting] = useState<boolean>(() => {
@@ -71,7 +91,11 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className={`relative min-h-screen bg-[#080c14] text-slate-100 font-mono antialiased ${isCrtActive ? 'crt-scanlines' : ''}`}>
+    <div
+      className={`relative min-h-screen bg-[#080c14] text-slate-100 font-mono antialiased ${
+        isCrtActive ? 'crt-scanlines' : ''
+      } ${currentThemeClass} ${isDegaussing ? 'animate-degauss-shake' : ''}`}
+    >
       {/* 0. Ambient Phosphor Starfield Canvas */}
       <BackgroundStarfield />
 
@@ -109,6 +133,7 @@ export const App: React.FC = () => {
         onOpenArcade={() => setIsArcadeOpen(true)}
         onNavigateSection={handleNavigateSection}
         onReboot={handleReboot}
+        onDegauss={handleDegauss}
         isCrtActive={isCrtActive}
         onToggleCrt={() => setIsCrtActive((prev) => !prev)}
         activeSection={activeSection}
@@ -199,6 +224,7 @@ export const App: React.FC = () => {
         onClose={() => setIsTerminalOpen(false)}
         onOpenArcade={() => setIsArcadeOpen(true)}
         onReboot={handleReboot}
+        onDegauss={handleDegauss}
       />
 
       <AITwinModal
@@ -221,6 +247,7 @@ export const App: React.FC = () => {
         onOpenQuiz={() => setIsQuizOpen(true)}
         onOpenArcade={() => setIsArcadeOpen(true)}
         onReboot={handleReboot}
+        onDegauss={handleDegauss}
         onNavigateSection={handleNavigateSection}
       />
 

@@ -316,3 +316,48 @@
   transform: scale(0.96) translateY(1px);
 }
 
+/* 9. CRT Color Phosphor Themes */
+.theme-p3-amber {
+  filter: sepia(0.65) hue-rotate(335deg) saturate(2.4);
+}
+
+.theme-cyber-cyan {
+  filter: hue-rotate(35deg) saturate(1.4);
+}
+
+.theme-p4-white {
+  filter: grayscale(0.9) brightness(1.1) contrast(1.05);
+}
+
+/* 10. Degauss Screen Magnetic Distortion Shake */
+@keyframes crt-degauss-shake {
+  0% {
+    transform: translate(0, 0) scale(1);
+    filter: brightness(2) contrast(2) hue-rotate(90deg);
+  }
+  15% {
+    transform: translate(-6px, 4px) skewX(2deg);
+    filter: brightness(1.7) contrast(1.8) hue-rotate(-60deg);
+  }
+  30% {
+    transform: translate(5px, -5px) skewY(-2deg);
+    filter: brightness(1.4) contrast(1.5) hue-rotate(45deg);
+  }
+  50% {
+    transform: translate(-3px, 2px) skewX(-1deg);
+    filter: brightness(1.2) contrast(1.2);
+  }
+  75% {
+    transform: translate(2px, -1px);
+    filter: brightness(1.1);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    filter: none;
+  }
+}
+
+.animate-degauss-shake {
+  animation: crt-degauss-shake 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+

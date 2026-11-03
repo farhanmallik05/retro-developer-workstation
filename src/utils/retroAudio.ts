@@ -1,6 +1,8 @@
 // Web Audio API Retro Sound Synthesizer (0KB external assets)
 class RetroAudioEngine {
   private ctx: AudioContext | null = null;
+  private analyser: AnalyserNode | null = null;
+  private masterGain: GainNode | null = null;
   private muted: boolean = false;
 
   constructor() {
@@ -12,14 +14,38 @@ class RetroAudioEngine {
 
   private initCtx() {
     if (!this.ctx && typeof window !== 'undefined') {
-      const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtxClass =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (AudioCtxClass) {
         this.ctx = new AudioCtxClass();
+      }
+    }
+    if (this.ctx && !this.analyser) {
+      try {
+        this.analyser = this.ctx.createAnalyser();
+        this.analyser.fftSize = 128;
+        this.analyser.smoothingTimeConstant = 0.8;
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.connect(this.analyser);
+        this.analyser.connect(this.ctx.destination);
+      } catch {
+        // fallback
       }
     }
     if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume();
     }
+  }
+
+  public getAnalyser(): AnalyserNode | null {
+    this.initCtx();
+    return this.analyser;
+  }
+
+  private getDestination(): AudioNode {
+    this.initCtx();
+    return this.masterGain || (this.ctx ? this.ctx.destination : (null as unknown as AudioNode));
   }
 
   public isMuted(): boolean {
@@ -59,7 +85,7 @@ class RetroAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.02);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDestination());
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.02);
@@ -85,7 +111,7 @@ class RetroAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDestination());
 
       osc.start();
       osc.stop(this.ctx.currentTime + duration);
@@ -112,7 +138,7 @@ class RetroAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.03);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDestination());
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.03);
@@ -142,7 +168,7 @@ class RetroAudioEngine {
         gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.35);
 
         osc.connect(gain);
-        gain.connect(this.ctx.destination);
+        gain.connect(this.getDestination());
 
         osc.start(startTime);
         osc.stop(startTime + 0.35);
@@ -170,7 +196,7 @@ class RetroAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDestination());
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.12);
@@ -197,7 +223,7 @@ class RetroAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDestination());
 
       osc.start();
       osc.stop(this.ctx.currentTime + 0.18);
@@ -230,10 +256,37 @@ class RetroAudioEngine {
       gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDestination());
 
       osc.start();
       osc.stop(this.ctx.currentTime + duration);
+    } catch {
+      // fallback
+    }
+  }
+
+  // CRT Degauss Coil Magnetic Pulse
+  public playDegaussCoil() {
+    if (this.muted) return;
+    try {
+      this.initCtx();
+      if (!this.ctx) return;
+
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(120, this.ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(30, this.ctx.currentTime + 0.35);
+
+      gain.gain.setValueAtTime(0.14, this.ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+
+      osc.connect(gain);
+      gain.connect(this.getDestination());
+
+      osc.start();
+      osc.stop(this.ctx.currentTime + 0.35);
     } catch {
       // fallback
     }

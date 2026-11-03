@@ -1,13 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Terminal as TerminalIcon, X, Minus, Square, CornerDownLeft, Sparkles } from 'lucide-react';
+import { Terminal as TerminalIcon, X, Minus, Square, CornerDownLeft, Sparkles, Cpu, Layers } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { TerminalOutputItem } from '../types/portfolio';
+import { themeEngine, CRT_THEMES, CrtThemeId } from '../utils/themeEngine';
+import { retroAudio } from '../utils/retroAudio';
 
 interface InteractiveTerminalProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenArcade?: () => void;
   onReboot?: () => void;
+  onDegauss?: () => void;
 }
 
 export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
@@ -15,6 +18,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
   onClose,
   onOpenArcade,
   onReboot,
+  onDegauss,
 }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
@@ -56,7 +60,31 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
 
     let resultNode: React.ReactNode;
 
-    switch (trimmed) {
+    if (trimmed.startsWith('theme')) {
+      const parts = trimmed.split(' ');
+      const requestedTheme = parts[1]?.toLowerCase() as CrtThemeId | undefined;
+      if (requestedTheme && CRT_THEMES[requestedTheme]) {
+        themeEngine.setTheme(requestedTheme);
+        retroAudio.playTerminalBeep(980, 0.05);
+        resultNode = (
+          <p className="text-emerald-400 font-mono text-xs">
+            CRT Phosphor palette switched to: <strong className="text-white">{CRT_THEMES[requestedTheme].name}</strong> ({CRT_THEMES[requestedTheme].label})
+          </p>
+        );
+      } else {
+        resultNode = (
+          <div className="font-mono text-xs text-slate-300 space-y-1">
+            <p className="text-amber-400 font-bold">Usage: theme &lt;emerald | amber | cyan | white&gt;</p>
+            <p className="text-slate-400">Available CRT Phosphor options:</p>
+            <p>• <span className="text-emerald-400 font-mono">theme emerald</span> : Classic IBM / Apple II P1 Green</p>
+            <p>• <span className="text-amber-400 font-mono">theme amber</span> : DEC / Wang Laboratories P3 Amber</p>
+            <p>• <span className="text-cyan-400 font-mono">theme cyan</span> : Tron Electric Cyan Monochrome</p>
+            <p>• <span className="text-slate-200 font-mono">theme white</span> : DEC VT220 Paper-White Monochrome</p>
+          </div>
+        );
+      }
+    } else {
+      switch (trimmed) {
       case 'help':
         resultNode = (
           <div className="space-y-1.5 text-slate-300 text-xs">
@@ -66,6 +94,10 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">resume</span> Print complete plain-text resume</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">curl</span> Query live profile JSON API endpoint</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">oss</span> Display open source contributions &amp; leadership</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">htop</span> Live system process telemetry monitor</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">aws s3 ls</span> Query connected AWS S3 project storage buckets</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">theme &lt;id&gt;</span> Change CRT phosphor (emerald, amber, cyan, white)</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">degauss</span> Coil demagnetization shockwave &amp; audio pulse</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">arcade</span> Launch CYBER-RUNNER 1984 2D arcade minigame</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">reboot</span> Reboot workstation &amp; replay BIOS POST screen</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">matrix</span> Toggle falling digital matrix rain</p>
@@ -249,6 +281,132 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
         }
         break;
 
+      case 'degauss':
+        retroAudio.playDegaussCoil();
+        if (onDegauss) onDegauss();
+        resultNode = (
+          <p className="text-cyan-400 font-mono text-xs">
+            🧲 CRT Magnetic Coil Discharged. Electron Beam Degaussed. [NOMINAL]
+          </p>
+        );
+        break;
+
+      case 'htop':
+      case 'top':
+        resultNode = (
+          <div className="p-3 bg-black/80 rounded border border-slate-800 font-mono text-[11px] space-y-2 text-slate-300">
+            <div className="flex justify-between border-b border-slate-800 pb-1 text-slate-400">
+              <span>TASKS: 5 RUNNING, 0 SLEEPING</span>
+              <span className="text-emerald-400">CPU LOAD: [||||||||....] 48.2%</span>
+              <span className="text-cyan-400">MEM: 8.4GB / 16.0GB</span>
+            </div>
+            <table className="w-full text-left">
+              <thead>
+                <tr className="text-slate-500 border-b border-slate-800">
+                  <th className="pb-1">PID</th>
+                  <th className="pb-1">PROCESS</th>
+                  <th className="pb-1">STATUS</th>
+                  <th className="pb-1">CPU%</th>
+                  <th className="pb-1">MEMORY</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-900">
+                <tr>
+                  <td className="text-slate-400 py-1">101</td>
+                  <td className="text-emerald-400 font-bold">ghar-search-langgraph</td>
+                  <td className="text-emerald-500">6_WORKERS_ACTIVE</td>
+                  <td className="text-white">24.5%</td>
+                  <td className="text-slate-400">1.5L RERA RECS</td>
+                </tr>
+                <tr>
+                  <td className="text-slate-400 py-1">102</td>
+                  <td className="text-cyan-400 font-bold">cloudops-sre-swarm</td>
+                  <td className="text-cyan-500">28s_MTTD_MONITOR</td>
+                  <td className="text-white">12.1%</td>
+                  <td className="text-slate-400">CLOUDWATCH_INS</td>
+                </tr>
+                <tr>
+                  <td className="text-slate-400 py-1">103</td>
+                  <td className="text-purple-400 font-bold">forkfix-nemotron</td>
+                  <td className="text-purple-500">4_SANDBOXES</td>
+                  <td className="text-white">8.6%</td>
+                  <td className="text-slate-400">DOCKER_ISOLATED</td>
+                </tr>
+                <tr>
+                  <td className="text-slate-400 py-1">104</td>
+                  <td className="text-amber-400 font-bold">retro-audio-synth</td>
+                  <td className="text-amber-500">PROCEDURAL_0KB</td>
+                  <td className="text-white">1.8%</td>
+                  <td className="text-slate-400">WEB_AUDIO_CTX</td>
+                </tr>
+                <tr>
+                  <td className="text-slate-400 py-1">105</td>
+                  <td className="text-slate-300 font-bold">vector-crt-display</td>
+                  <td className="text-slate-400">60_FPS_VSYNC</td>
+                  <td className="text-white">1.2%</td>
+                  <td className="text-slate-400">HARDWARE_ACCEL</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        );
+        break;
+
+      case 'aws s3 ls':
+      case 'aws s3':
+        resultNode = (
+          <div className="font-mono text-xs space-y-1 text-slate-300">
+            <p className="text-slate-500">$ aws s3 ls</p>
+            <p><span className="text-slate-500">2026-11-01 09:30:15</span> <span className="text-cyan-400 font-bold">s3://farhan-ghar-search-dossiers</span></p>
+            <p><span className="text-slate-500">2026-11-01 14:15:22</span> <span className="text-emerald-400 font-bold">s3://cloudops-swarm-telemetry-dumps</span></p>
+            <p><span className="text-slate-500">2026-11-02 18:45:00</span> <span className="text-amber-400 font-bold">s3://ecoroute-ev-map-tiles</span></p>
+            <p><span className="text-slate-500">2026-11-03 12:00:00</span> <span className="text-purple-400 font-bold">s3://farhan-workstation-cdk-synthesizer</span></p>
+            <p className="text-[11px] text-slate-500 mt-1">4 buckets queried across AWS region us-east-1 (All public endpoints secured).</p>
+          </div>
+        );
+        break;
+
+      case 'aws sts get-caller-identity':
+      case 'aws whoami':
+        resultNode = (
+          <div className="font-mono text-xs text-slate-300 bg-black/80 p-3 rounded border border-slate-800">
+            <p className="text-slate-500">$ aws sts get-caller-identity</p>
+            <pre className="text-emerald-400 text-[11px] mt-1">
+{JSON.stringify(
+  {
+    UserId: 'AIDA_FARHAN_MALLIK_BUILDER',
+    Account: '891024567890',
+    Arn: 'arn:aws:iam::891024567890:user/farhan-mallik',
+    Role: 'Campus Lead 2026 // AI-Native Full-Stack Architect',
+    Region: 'us-east-1',
+  },
+  null,
+  2
+)}
+            </pre>
+          </div>
+        );
+        break;
+
+      case 'whoami':
+        resultNode = (
+          <div className="font-mono text-xs text-slate-300 space-y-1">
+            <p><strong className="text-white">FARHAN MALLIK</strong> (farhanmallick2005@gmail.com)</p>
+            <p className="text-slate-400">Undergraduate B.Tech CSE &amp; IT ('28) • KCC ITM, Greater Noida</p>
+            <p className="text-amber-400">Campus Lead 2026 (Open Source Connect Global) • 2x Hackathon Finalist</p>
+            <p className="text-emerald-400">Kestra SCSS Contributor • SlothOps Gemma 2 Architect</p>
+          </div>
+        );
+        break;
+
+      case 'uptime':
+        resultNode = (
+          <p className="text-emerald-400 font-mono text-xs">
+            FM-OS Workstation Kernel 4.2 up 42 days, 13:37, 1 active operator, load: 0.12, 0.08, 0.05
+          </p>
+        );
+        break;
+
       case 'clear':
         setOutputs([]);
         setInput('');
@@ -261,6 +419,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
           </p>
         );
     }
+  }
 
     setOutputs((prev) => [
       ...prev,

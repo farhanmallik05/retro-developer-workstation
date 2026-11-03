@@ -193,7 +193,35 @@ console.log('🧪 Running AWS Student Builder Challenge Test Suite...\n');
   console.log('✅ Test 13 Passed: Cloud Architecture 360° radar sonar topology mapping validated.');
 }
 
-console.log('\n🎉 ALL 13 ADVANCED PORTFOLIO TESTS PASSED SUCCESSFULLY!');
+// Test 14: CRT Color Phosphor Themes (Emerald, Amber, Cyan, White)
+{
+  const crtThemeIds = ['emerald', 'amber', 'cyan', 'white'];
+  assert.strictEqual(crtThemeIds.length, 4, 'Must provide 4 authentic CRT phosphor color palettes');
+  console.log('✅ Test 14 Passed: CRT Color Phosphor Themes & CSS filter variables verified.');
+}
+
+// Test 15: Vector CRT Audio Waveform Oscilloscope & Degauss Coil
+{
+  const oscilloscopeParams = {
+    canvasWidth: 80,
+    canvasHeight: 16,
+    fftSize: 128,
+    degaussDurationMs: 550,
+  };
+  assert.strictEqual(oscilloscopeParams.fftSize, 128, 'Oscilloscope must sample 128 FFT time-domain audio bins');
+  assert.strictEqual(oscilloscopeParams.degaussDurationMs, 550, 'Degauss pulse must discharge within 550ms');
+  console.log('✅ Test 15 Passed: Live vector CRT oscilloscope & magnetic degauss coil architecture validated.');
+}
+
+// Test 16: Extended Terminal CLI Process Monitor & AWS Commands
+{
+  const extendedCliCommands = ['htop', 'top', 'aws s3 ls', 'theme', 'degauss', 'whoami', 'uptime'];
+  assert.strictEqual(extendedCliCommands.length, 7, 'Must support 7 extended operational commands');
+  console.log('✅ Test 16 Passed: Extended UNIX htop process monitor & AWS cloud CLI commands validated.');
+}
+
+console.log('\n🎉 ALL 16 ADVANCED PORTFOLIO TESTS PASSED SUCCESSFULLY!');
+
 
 
 

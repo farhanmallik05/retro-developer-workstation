@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles, Volume2, VolumeX, RotateCcw, Zap } from 'lucide-react';
 import { ScrollTelemetryHud } from './ScrollTelemetryHud';
+import { RetroOscilloscope } from './RetroOscilloscope';
 import { retroAudio } from '../utils/retroAudio';
 import { navigationEffects, JumpAnimationMode } from '../utils/navigationEffects';
+import { themeEngine, CrtTheme } from '../utils/themeEngine';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
@@ -13,6 +15,7 @@ interface NavbarProps {
   onOpenArcade?: () => void;
   onNavigateSection?: (sectionId: string) => void;
   onReboot?: () => void;
+  onDegauss?: () => void;
   isCrtActive?: boolean;
   onToggleCrt?: () => void;
   activeSection?: string;
@@ -28,6 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenArcade,
   onNavigateSection,
   onReboot,
+  onDegauss,
   isCrtActive = true,
   onToggleCrt,
   activeSection = 'hero',
@@ -37,6 +41,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [currentTime, setCurrentTime] = useState('');
   const [isMuted, setIsMuted] = useState(retroAudio.isMuted());
   const [jumpMode, setJumpMode] = useState<JumpAnimationMode>(() => navigationEffects.getMode());
+  const [currentTheme, setCurrentTheme] = useState<CrtTheme>(() => themeEngine.getTheme());
+
+  useEffect(() => {
+    return themeEngine.subscribe((theme) => {
+      setCurrentTheme(theme);
+    });
+  }, []);
 
   const handleCycleJumpMode = () => {
     const next = navigationEffects.cycleNextMode();
@@ -89,10 +100,41 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span className="text-slate-400">AWS_REGION: <strong className="text-cyan-400">us-east-1</strong></span>
           <span className="text-slate-600">|</span>
           <span className="text-slate-400">BAUD: <strong className="text-amber-400">115200</strong></span>
+          <span className="text-slate-600 hidden lg:inline">|</span>
+          <div className="hidden lg:flex items-center gap-1.5" title="Live Vector CRT Audio Waveform">
+            <span className="text-[10px] text-slate-500">AUDIO_WAVE:</span>
+            <RetroOscilloscope width={80} height={16} />
+          </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          <span className="text-slate-500 font-mono">{currentTime}</span>
+        <div className="flex items-center gap-2.5">
+          <span className="text-slate-500 font-mono hidden xl:inline">{currentTime}</span>
+
+          {/* CRT Color Phosphor Palette Cycler */}
+          <button
+            onClick={() => {
+              const next = themeEngine.cycleNextTheme();
+              retroAudio.playTerminalBeep(980, 0.05);
+            }}
+            className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-slate-900 border-slate-700 hover:border-slate-500 text-slate-200"
+            title="Cycle CRT Color Phosphor Palette (Emerald, Amber, Cyan, White)"
+          >
+            {currentTheme.label}
+          </button>
+
+          {/* Degauss Coil Button */}
+          {onDegauss && (
+            <button
+              onClick={() => {
+                retroAudio.playDegaussCoil();
+                onDegauss();
+              }}
+              className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-amber-950/60 border-amber-500/50 text-amber-300 hover:text-white hover:border-amber-400"
+              title="Discharge CRT Magnetic Coil (Degauss)"
+            >
+              🧲 DEGAUSS
+            </button>
+          )}
 
           {/* Sound Synthesizer Toggle */}
           <button
