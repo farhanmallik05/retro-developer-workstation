@@ -183,11 +183,11 @@ export const Projects: React.FC = () => {
                   </p>
 
                   {/* Telemetry Matrix (4 Columns/Pills) */}
-                  <div className="grid grid-cols-2 gap-2 mt-5 p-3 rounded bg-[#070b14] border border-slate-800/80 font-mono text-xs">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-5 p-3 rounded bg-[#070b14] border border-slate-800/80 font-mono text-xs">
                     {p.telemetry.map((t, tidx) => (
                       <div key={tidx} className="p-1.5">
                         <span className="block text-[10px] text-slate-500 uppercase">{t.label}</span>
-                        <span className={`font-bold ${t.color}`}>{t.value}</span>
+                        <span className={`font-bold ${t.color} text-[11px] sm:text-xs break-words`}>{t.value}</span>
                       </div>
                     ))}
                   </div>

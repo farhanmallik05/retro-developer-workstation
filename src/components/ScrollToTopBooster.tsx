@@ -43,3 +43,4 @@ export const ScrollToTopBooster: React.FC = () => {
     </div>
   );
 };
+

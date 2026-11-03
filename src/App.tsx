@@ -13,7 +13,6 @@ import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { AITwinModal } from './components/AITwinModal';
 import { CommandPalette } from './components/CommandPalette';
 import { CertificationQuizModal } from './components/CertificationQuizModal';
-import { ScrollTelemetryHud } from './components/ScrollTelemetryHud';
 import { ScrollToTopBooster } from './components/ScrollToTopBooster';
 import { Terminal, Cpu, Cloud, Bot, Sparkles } from 'lucide-react';
 
@@ -36,7 +35,7 @@ export const App: React.FC = () => {
       {/* CRT Horizontal Electron Beam Raster Sweep */}
       {isCrtActive && <div className="crt-beam-sweep" aria-hidden="true" />}
 
-      {/* 1. Retro Terminal Navbar */}
+      {/* 1. Retro Terminal Navbar with Synchronized Telemetry HUD */}
       <Navbar
         onOpenTerminal={() => setIsTerminalOpen(true)}
         onOpenAITwin={() => setIsAITwinOpen(true)}
@@ -46,10 +45,8 @@ export const App: React.FC = () => {
         isCrtActive={isCrtActive}
         onToggleCrt={() => setIsCrtActive((prev) => !prev)}
         activeSection={activeSection}
+        onSectorChange={setActiveSection}
       />
-
-      {/* Real-Time Scroll Depth & Memory Telemetry HUD */}
-      <ScrollTelemetryHud onSectorChange={setActiveSection} />
 
       {/* Main Workstation Modules */}
       <main className="relative z-10">

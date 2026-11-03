@@ -75,24 +75,24 @@ export const ScrollTelemetryHud: React.FC<ScrollTelemetryHudProps> = ({ onSector
   }, [onSectorChange]);
 
   return (
-    <div className="sticky top-[49px] md:top-[85px] z-40 w-full bg-[#070b14]/95 border-b border-slate-800/80 backdrop-blur-md text-[10px] font-mono select-none">
+    <div className="w-full bg-[#070b14]/95 border-t border-slate-800/80 text-[10px] font-mono select-none">
       {/* Telemetry Readout Strip */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex items-center justify-between text-slate-400">
-        <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-phosphor-pulse" />
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 py-1 flex items-center justify-between text-slate-400">
+        <div className="flex items-center gap-2 sm:gap-3 truncate">
+          <span className="flex items-center gap-1.5 text-emerald-400 font-bold shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-phosphor-pulse shrink-0" />
             <span>SECTOR: [{activeSector.code}]</span>
           </span>
           <span className="hidden sm:inline text-slate-600">//</span>
-          <span className="hidden sm:inline text-slate-300 font-bold">{activeSector.label}</span>
+          <span className="hidden sm:inline text-slate-300 font-bold truncate">{activeSector.label}</span>
         </div>
 
-        <div className="flex items-center gap-3 font-mono">
+        <div className="flex items-center gap-2 sm:gap-3 font-mono shrink-0">
           <span className="text-slate-500 hidden md:inline">
             MEM_LOC: <strong className="text-cyan-400 font-bold">{hexOffset}</strong>
           </span>
           <span className="text-slate-600 hidden md:inline">|</span>
-          <span className="text-slate-400">
+          <span className="text-slate-400 text-[9px] sm:text-[10px] whitespace-nowrap">
             SCROLL: <strong className="text-emerald-400 font-bold">{scrollPercent}%</strong>
           </span>
         </div>
@@ -108,3 +108,4 @@ export const ScrollTelemetryHud: React.FC<ScrollTelemetryHudProps> = ({ onSector
     </div>
   );
 };
+

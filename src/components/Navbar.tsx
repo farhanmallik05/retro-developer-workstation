@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles } from 'lucide-react';
+import { ScrollTelemetryHud } from './ScrollTelemetryHud';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
@@ -10,6 +11,7 @@ interface NavbarProps {
   isCrtActive?: boolean;
   onToggleCrt?: () => void;
   activeSection?: string;
+  onSectorChange?: (sectorId: string) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -21,6 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   isCrtActive = true,
   onToggleCrt,
   activeSection = 'hero',
+  onSectorChange,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
@@ -315,6 +318,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
       )}
+
+      {/* Synchronized Real-Time Scroll Depth & Memory Telemetry HUD */}
+      <ScrollTelemetryHud onSectorChange={onSectorChange} />
     </header>
   );
 };

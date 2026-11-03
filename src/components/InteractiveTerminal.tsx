@@ -264,7 +264,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#050811]/85 backdrop-blur-xl animate-in fade-in duration-200">
       {/* Double Bezel Outer Frame */}
-      <div className="relative w-full max-w-3xl p-2 rounded-[2rem] bg-white/[0.04] ring-1 ring-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.8)] font-mono text-xs flex flex-col h-[540px]">
+      <div className="relative w-full max-w-3xl p-2 rounded-[2rem] bg-white/[0.04] ring-1 ring-white/10 shadow-[0_24px_60px_rgba(0,0,0,0.8)] font-mono text-xs flex flex-col h-[540px] max-h-[85vh]">
         {/* Double Bezel Inner Core */}
         <div className="rounded-[calc(2rem-0.5rem)] bg-[#0c1222] border border-white/5 flex flex-col flex-1 overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.14)]">
           {/* Acrylic Title Bar with macOS Traffic Lights */}

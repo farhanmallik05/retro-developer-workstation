@@ -77,3 +77,4 @@ export const RetroDecoderText: React.FC<RetroDecoderTextProps> = ({
     </Component>
   );
 };
+

@@ -69,17 +69,17 @@ export const Hero: React.FC<HeroProps> = ({
               </pre>
 
               {/* Badges / Specifications */}
-              <div className="flex flex-wrap gap-2 text-[10px] font-mono">
-                <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 text-[9px] sm:text-[10px] font-mono max-w-full">
+                <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold break-words">
                   [ KERNEL: AI &amp; FRONTEND ENGINEER ]
                 </span>
-                <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 font-bold">
+                <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 font-bold break-words">
                   [ SPEC: B.TECH CSE (IT) // 2024–2028 ]
                 </span>
-                <span className="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/50 text-amber-300 font-bold">
+                <span className="px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/50 text-amber-300 font-bold break-words">
                   [ STATION: GREATER NOIDA // 201310 ]
                 </span>
-                <span className="px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/50 text-purple-300 font-bold">
+                <span className="px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/50 text-purple-300 font-bold break-words">
                   [ CAMPUS LEAD 2026 // 2X HACKATHON FINALIST // OPEN SOURCE CONTRIBUTOR ]
                 </span>
               </div>
@@ -89,19 +89,19 @@ export const Hero: React.FC<HeroProps> = ({
                 <p className="text-xs font-mono text-emerald-400">
                   &gt; identity --display-summary
                 </p>
-                <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.1]">
+                <h1 className="font-display font-extrabold text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-[1.1] break-words">
                   Architecting Multi-Agent AI Workflows, High-Craft Frontends &amp; Cloud Delivery.
                 </h1>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-mono pt-2">
+                <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed font-mono pt-2">
                   Specializing in autonomous multi-agent LLM systems with LangGraph, Google Gemma 4, NVIDIA Nemotron, and Ollama alongside responsive Next.js 14, TypeScript, Tailwind CSS, and Framer Motion frontends. Two-time Hackathon Finalist and Open Source Campus Lead 2026.
                 </p>
               </div>
 
               {/* Retro Keycap Action Grid */}
-              <div className="pt-2 flex flex-wrap items-center gap-3">
+              <div className="pt-2 flex flex-wrap items-center gap-2.5 sm:gap-3">
                 <button
                   onClick={onOpenTerminal}
-                  className="flex items-center gap-2 px-5 py-3 rounded bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-95"
+                  className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-95 w-full xs:w-auto"
                 >
                   <Terminal className="w-4 h-4" />
                   <span>$ ./launch_cli.sh</span>
@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({
                 {onOpenSandbox && (
                   <button
                     onClick={onOpenSandbox}
-                    className="flex items-center gap-2 px-5 py-3 rounded bg-slate-900 border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 hover:text-white font-bold text-xs tracking-wider uppercase transition-all active:scale-95"
+                    className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded bg-slate-900 border border-cyan-500/50 hover:border-cyan-400 text-cyan-300 hover:text-white font-bold text-xs tracking-wider uppercase transition-all active:scale-95 w-full xs:w-auto"
                   >
                     <Cloud className="w-4 h-4 text-cyan-400" />
                     <span>$ ./open_sandbox.bin</span>
@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({
 
                 <button
                   onClick={() => scrollTo('dossiers')}
-                  className="flex items-center gap-1.5 px-4 py-3 rounded bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-semibold hover:text-white transition-colors"
+                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-3 rounded bg-slate-900/80 border border-slate-700 hover:border-slate-500 text-slate-300 text-xs font-semibold hover:text-white transition-colors w-full xs:w-auto"
                 >
                   <span>[ VIEW_DOSSIERS ]</span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
@@ -162,7 +162,7 @@ export const Hero: React.FC<HeroProps> = ({
                 {/* CRT Terminal Screen Output */}
                 <div className="p-4 space-y-3 bg-[#03060c] text-slate-300 min-h-[360px] flex flex-col justify-between">
                   <div className="space-y-2">
-                    <div className="text-emerald-400 text-[11px]">
+                    <div className="text-emerald-400 text-[10px] sm:text-[11px] break-all leading-relaxed">
                       <span>root@aws-node-us-east-1:~$ </span>
                       <span className="text-white font-bold">{typedText}</span>
                       <span className="animate-cursor-blink text-emerald-400">█</span>
