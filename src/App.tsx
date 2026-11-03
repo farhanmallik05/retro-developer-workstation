@@ -15,6 +15,12 @@ import { CommandPalette } from './components/CommandPalette';
 import { CertificationQuizModal } from './components/CertificationQuizModal';
 import { RetroArcadeModal } from './components/RetroArcadeModal';
 import { ScrollToTopBooster } from './components/ScrollToTopBooster';
+import { RetroBootLoader } from './components/RetroBootLoader';
+import { SectorJumpOverlay } from './components/SectorJumpOverlay';
+import { BackgroundStarfield } from './components/BackgroundStarfield';
+import { RetroPhosphorCursor } from './components/RetroPhosphorCursor';
+import { navigationEffects, JumpAnimationMode } from './utils/navigationEffects';
+import { retroAudio } from './utils/retroAudio';
 import { Terminal, Cpu, Cloud, Bot, Sparkles } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -27,13 +33,69 @@ export const App: React.FC = () => {
   const [isCrtActive, setIsCrtActive] = useState(true);
   const [activeSection, setActiveSection] = useState('hero');
 
+  // Page Loading BIOS POST State
+  const [isBooting, setIsBooting] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    return sessionStorage.getItem('fm_boot_completed') !== 'true';
+  });
+  const [forceReboot, setForceReboot] = useState<boolean>(false);
+
+  // Sector Jump Transition State
+  const [isJumping, setIsJumping] = useState<boolean>(false);
+  const [jumpTarget, setJumpTarget] = useState<string>('hero');
+  const [jumpMode, setJumpMode] = useState<Exclude<JumpAnimationMode, 'RANDOM'>>('WARP_SPEED');
+
+  const handleReboot = () => {
+    setForceReboot(true);
+    setIsBooting(true);
+  };
+
   const handleNavigateSection = (sectionId: string) => {
-    const el = document.getElementById(sectionId);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const effectiveMode = navigationEffects.getEffectiveMode();
+    setJumpMode(effectiveMode);
+    setJumpTarget(sectionId);
+    setIsJumping(true);
+
+    retroAudio.playTerminalBeep(1100, 0.05);
+
+    let el = document.getElementById(sectionId);
+    if (!el && sectionId === 'projects') el = document.getElementById('dossiers');
+    if (!el && sectionId === 'dossiers') el = document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    setTimeout(() => {
+      setIsJumping(false);
+    }, 460);
   };
 
   return (
     <div className={`relative min-h-screen bg-[#080c14] text-slate-100 font-mono antialiased ${isCrtActive ? 'crt-scanlines' : ''}`}>
+      {/* 0. Ambient Phosphor Starfield Canvas */}
+      <BackgroundStarfield />
+
+      {/* 0. Tactical Retro Vector Crosshair Cursor */}
+      <RetroPhosphorCursor />
+
+      {/* 0. Sector Jump Transition FX & Target Locked Reticle */}
+      <SectorJumpOverlay
+        isJumping={isJumping}
+        jumpMode={jumpMode}
+        targetSector={jumpTarget}
+      />
+
+      {/* 0. BIOS POST Boot Sequence Loader */}
+      {isBooting && (
+        <RetroBootLoader
+          onComplete={() => {
+            setIsBooting(false);
+            setForceReboot(false);
+          }}
+          forceShow={forceReboot}
+        />
+      )}
+
       {/* CRT Horizontal Electron Beam Raster Sweep */}
       {isCrtActive && <div className="crt-beam-sweep" aria-hidden="true" />}
 
@@ -45,6 +107,8 @@ export const App: React.FC = () => {
         onOpenContact={() => handleNavigateSection('contact')}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         onOpenArcade={() => setIsArcadeOpen(true)}
+        onNavigateSection={handleNavigateSection}
+        onReboot={handleReboot}
         isCrtActive={isCrtActive}
         onToggleCrt={() => setIsCrtActive((prev) => !prev)}
         activeSection={activeSection}
@@ -58,6 +122,7 @@ export const App: React.FC = () => {
           onOpenTerminal={() => setIsTerminalOpen(true)}
           onOpenAITwin={() => setIsAITwinOpen(true)}
           onOpenSandbox={() => handleNavigateSection('sandbox')}
+          onNavigateSection={handleNavigateSection}
         />
 
         {/* 3. Declassified Project Dossiers */}
@@ -133,6 +198,7 @@ export const App: React.FC = () => {
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
         onOpenArcade={() => setIsArcadeOpen(true)}
+        onReboot={handleReboot}
       />
 
       <AITwinModal
@@ -154,6 +220,7 @@ export const App: React.FC = () => {
         onOpenContact={() => handleNavigateSection('contact')}
         onOpenQuiz={() => setIsQuizOpen(true)}
         onOpenArcade={() => setIsArcadeOpen(true)}
+        onReboot={handleReboot}
         onNavigateSection={handleNavigateSection}
       />
 

@@ -7,12 +7,14 @@ interface HeroProps {
   onOpenTerminal: () => void;
   onOpenAITwin?: () => void;
   onOpenSandbox?: () => void;
+  onNavigateSection?: (sectionId: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
   onOpenTerminal,
   onOpenAITwin,
   onOpenSandbox,
+  onNavigateSection,
 }) => {
   const [typedText, setTypedText] = useState('');
   const [rightColView, setRightColView] = useState<'crt' | '3d'>('crt');
@@ -31,8 +33,12 @@ export const Hero: React.FC<HeroProps> = ({
   }, []);
 
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (onNavigateSection) {
+      onNavigateSection(id);
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

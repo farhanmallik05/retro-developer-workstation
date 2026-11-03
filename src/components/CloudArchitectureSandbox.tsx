@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layers, CheckCircle2, AlertCircle, ShieldCheck, X, Code, Copy, Check, Download, Sparkles, Terminal, Cpu } from 'lucide-react';
 import { generateAwsCdkCode, generateCloudFormationYaml, ArchitectureNodeData } from '../utils/iacGenerator';
+import { CloudRadarVisualizer } from './CloudRadarVisualizer';
 
 interface ArchitecturePattern {
   id: string;
@@ -149,6 +150,12 @@ export const CloudArchitectureSandbox: React.FC<CloudArchitectureSandboxProps> =
           ))}
         </div>
       </div>
+
+      {/* 360° Real-Time Radar Topology Visualizer */}
+      <CloudRadarVisualizer
+        activeServices={activeServices}
+        onToggleService={toggleService}
+      />
 
       {/* Service Palette */}
       <div>

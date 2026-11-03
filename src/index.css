@@ -274,7 +274,8 @@
   .crt-beam-sweep,
   .animate-phosphor-pulse,
   .animate-amber-pulse,
-  .laser-progress-bar {
+  .laser-progress-bar,
+  .animate-radar-sweep {
     animation: none !important;
   }
 
@@ -284,3 +285,34 @@
     transition: none !important;
   }
 }
+
+/* 7. Tactical Radar / Sonar Sweep */
+@keyframes radar-sweep-360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep-360 4.5s linear infinite;
+  transform-origin: center center;
+}
+
+/* 8. Hazard / Striped Tape & Tactical Micro-interactions */
+.tactical-hazard-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(245, 158, 11, 0.15),
+    rgba(245, 158, 11, 0.15) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+.tactical-btn-spring:active {
+  transform: scale(0.96) translateY(1px);
+}
+

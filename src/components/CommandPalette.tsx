@@ -10,6 +10,7 @@ interface CommandPaletteProps {
   onOpenContact: () => void;
   onOpenQuiz?: () => void;
   onOpenArcade?: () => void;
+  onReboot?: () => void;
   onNavigateSection: (sectionId: string) => void;
 }
 
@@ -31,6 +32,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onOpenContact,
   onOpenQuiz,
   onOpenArcade,
+  onReboot,
   onNavigateSection,
 }) => {
   const [query, setQuery] = useState('');
@@ -56,6 +58,17 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   if (!isOpen) return null;
 
   const actions: CommandAction[] = [
+    {
+      id: 'cmd-reboot',
+      title: 'Reboot Workstation (BIOS POST Screen)',
+      subtitle: 'Simulate full hardware POST test, memory check, and audio boot chime',
+      category: 'Superpower',
+      icon: <Terminal className="w-4 h-4 text-rose-400" />,
+      run: () => {
+        onClose();
+        if (onReboot) onReboot();
+      },
+    },
     {
       id: 'cmd-arcade',
       title: 'Play CYBER-RUNNER 1984 Arcade ROM',

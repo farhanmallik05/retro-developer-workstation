@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles, Volume2, VolumeX } from 'lucide-react';
+import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles, Volume2, VolumeX, RotateCcw, Zap } from 'lucide-react';
 import { ScrollTelemetryHud } from './ScrollTelemetryHud';
 import { retroAudio } from '../utils/retroAudio';
+import { navigationEffects, JumpAnimationMode } from '../utils/navigationEffects';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
@@ -10,6 +11,8 @@ interface NavbarProps {
   onOpenContact: () => void;
   onOpenCommandPalette?: () => void;
   onOpenArcade?: () => void;
+  onNavigateSection?: (sectionId: string) => void;
+  onReboot?: () => void;
   isCrtActive?: boolean;
   onToggleCrt?: () => void;
   activeSection?: string;
@@ -23,6 +26,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenContact,
   onOpenCommandPalette,
   onOpenArcade,
+  onNavigateSection,
+  onReboot,
   isCrtActive = true,
   onToggleCrt,
   activeSection = 'hero',
@@ -31,6 +36,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
   const [isMuted, setIsMuted] = useState(retroAudio.isMuted());
+  const [jumpMode, setJumpMode] = useState<JumpAnimationMode>(() => navigationEffects.getMode());
+
+  const handleCycleJumpMode = () => {
+    const next = navigationEffects.cycleNextMode();
+    setJumpMode(next);
+    retroAudio.playTerminalBeep(920, 0.05);
+  };
 
   useEffect(() => {
     const updateTime = () => {
@@ -52,9 +64,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   const scrollTo = (id: string) => {
     retroAudio.playKeyClick();
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (onNavigateSection) {
+      onNavigateSection(id);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -102,6 +118,29 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Launch CYBER-RUNNER 1984 Arcade ROM"
             >
               🕹️ ARCADE
+            </button>
+          )}
+
+          {/* Jump Animation Style Cycler */}
+          <button
+            onClick={handleCycleJumpMode}
+            className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-cyan-950/60 border-cyan-500/50 text-cyan-300 hover:text-white hover:border-cyan-400"
+            title="Cycle Page Jump Transition Style (Warp, Degauss, Shutter, Tunnel, Random)"
+          >
+            ⚡ JUMP: {jumpMode}
+          </button>
+
+          {/* Reboot Button */}
+          {onReboot && (
+            <button
+              onClick={() => {
+                retroAudio.playBootChime();
+                onReboot();
+              }}
+              className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-rose-950/60 border-rose-500/50 text-rose-300 hover:text-white hover:border-rose-400"
+              title="Reboot Workstation (BIOS POST Sequence)"
+            >
+              🔄 REBOOT
             </button>
           )}
 
@@ -368,7 +407,30 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Hardware Controls (CRT & Sound SFX) */}
           <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] gap-2">
-            {onToggleCrt && (
+            {/* Jump Animation Style Cycler */}
+          <button
+            onClick={handleCycleJumpMode}
+            className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-cyan-950/60 border-cyan-500/50 text-cyan-300 hover:text-white hover:border-cyan-400"
+            title="Cycle Page Jump Transition Style (Warp, Degauss, Shutter, Tunnel, Random)"
+          >
+            ⚡ JUMP: {jumpMode}
+          </button>
+
+          {/* Reboot Button */}
+          {onReboot && (
+            <button
+              onClick={() => {
+                retroAudio.playBootChime();
+                onReboot();
+              }}
+              className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-rose-950/60 border-rose-500/50 text-rose-300 hover:text-white hover:border-rose-400"
+              title="Reboot Workstation (BIOS POST Sequence)"
+            >
+              🔄 REBOOT
+            </button>
+          )}
+
+          {onToggleCrt && (
               <button
                 onClick={onToggleCrt}
                 className={`flex-1 py-1.5 px-2 rounded font-bold border text-center transition-colors ${
