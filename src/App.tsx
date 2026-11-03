@@ -19,10 +19,12 @@ import { RetroBootLoader } from './components/RetroBootLoader';
 import { SectorJumpOverlay } from './components/SectorJumpOverlay';
 import { BackgroundStarfield } from './components/BackgroundStarfield';
 import { RetroPhosphorCursor } from './components/RetroPhosphorCursor';
+import { RecruiterBookingModal } from './components/RecruiterBookingModal';
+import { ExecutiveHeaderBanner } from './components/ExecutiveHeaderBanner';
 import { navigationEffects, JumpAnimationMode } from './utils/navigationEffects';
 import { themeEngine } from './utils/themeEngine';
 import { retroAudio } from './utils/retroAudio';
-import { Terminal, Cpu, Cloud, Bot, Sparkles } from 'lucide-react';
+import { Terminal, Cpu, Cloud, Bot, Sparkles, Calendar } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
@@ -33,6 +35,35 @@ export const App: React.FC = () => {
   const [isArcadeOpen, setIsArcadeOpen] = useState(false);
   const [isCrtActive, setIsCrtActive] = useState(true);
   const [activeSection, setActiveSection] = useState('hero');
+
+  // Dual Persona Switcher (Retro Workstation vs Executive Minimalist)
+  const [viewMode, setViewMode] = useState<'retro' | 'executive'>(() => {
+    if (typeof window === 'undefined') return 'retro';
+    return (localStorage.getItem('fm_portfolio_view_mode') as 'retro' | 'executive') || 'retro';
+  });
+
+  const handleToggleViewMode = (mode: 'retro' | 'executive') => {
+    setViewMode(mode);
+    try {
+      localStorage.setItem('fm_portfolio_view_mode', mode);
+    } catch {
+      // ignore
+    }
+    if (mode === 'executive') {
+      setIsCrtActive(false);
+    } else {
+      setIsCrtActive(true);
+    }
+  };
+
+  // Recruiter Fast-Track Calendar Booking State
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [bookingRole, setBookingRole] = useState('');
+
+  const handleOpenBooking = (role?: string) => {
+    if (role) setBookingRole(role);
+    setIsBookingOpen(true);
+  };
 
   // CRT Phosphor Color Theme State
   const [currentThemeClass, setCurrentThemeClass] = useState<string>(
@@ -92,8 +123,10 @@ export const App: React.FC = () => {
 
   return (
     <div
-      className={`relative min-h-screen bg-[#080c14] text-slate-100 font-mono antialiased ${
-        isCrtActive ? 'crt-scanlines' : ''
+      className={`relative min-h-screen bg-[#080c14] text-slate-100 ${
+        viewMode === 'retro' ? 'font-mono' : 'font-sans executive-mode'
+      } antialiased ${
+        isCrtActive && viewMode === 'retro' ? 'crt-scanlines' : ''
       } ${currentThemeClass} ${isDegaussing ? 'animate-degauss-shake' : ''}`}
     >
       {/* 0. Ambient Phosphor Starfield Canvas */}
@@ -121,7 +154,7 @@ export const App: React.FC = () => {
       )}
 
       {/* CRT Horizontal Electron Beam Raster Sweep */}
-      {isCrtActive && <div className="crt-beam-sweep" aria-hidden="true" />}
+      {isCrtActive && viewMode === 'retro' && <div className="crt-beam-sweep" aria-hidden="true" />}
 
       {/* 1. Retro Terminal Navbar with Synchronized Telemetry HUD */}
       <Navbar
@@ -129,6 +162,7 @@ export const App: React.FC = () => {
         onOpenAITwin={() => setIsAITwinOpen(true)}
         onOpenSandbox={() => setIsSandboxModalOpen(true)}
         onOpenContact={() => handleNavigateSection('contact')}
+        onOpenBooking={() => handleOpenBooking()}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         onOpenArcade={() => setIsArcadeOpen(true)}
         onNavigateSection={handleNavigateSection}
@@ -138,16 +172,29 @@ export const App: React.FC = () => {
         onToggleCrt={() => setIsCrtActive((prev) => !prev)}
         activeSection={activeSection}
         onSectorChange={setActiveSection}
+        viewMode={viewMode}
+        onToggleViewMode={handleToggleViewMode}
       />
 
       {/* Main Workstation Modules */}
       <main className="relative z-10">
+        {/* Executive Minimalist Briefing (Hiring Manager View) */}
+        {viewMode === 'executive' && (
+          <ExecutiveHeaderBanner
+            onOpenBooking={() => handleOpenBooking()}
+            onOpenContact={() => handleNavigateSection('contact')}
+            onSwitchToRetro={() => handleToggleViewMode('retro')}
+            onOpenTerminal={() => setIsTerminalOpen(true)}
+          />
+        )}
+
         {/* 2. Mainframe Hero */}
         <Hero
           onOpenTerminal={() => setIsTerminalOpen(true)}
           onOpenAITwin={() => setIsAITwinOpen(true)}
           onOpenSandbox={() => handleNavigateSection('sandbox')}
           onNavigateSection={handleNavigateSection}
+          onOpenBooking={() => handleOpenBooking()}
         />
 
         {/* 3. Declassified Project Dossiers */}
@@ -169,7 +216,7 @@ export const App: React.FC = () => {
         <About />
 
         {/* 9. Sub-Space Transmission Console */}
-        <ContactSection />
+        <ContactSection onOpenBooking={() => handleOpenBooking()} />
       </main>
 
       {/* 10. Retro Footer */}
@@ -177,6 +224,16 @@ export const App: React.FC = () => {
 
       {/* Floating Retro Fast-Launch Drawer (Bottom-Right) */}
       <div className="fixed bottom-4 right-3 sm:right-4 z-40 flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded bg-[#0b101c]/95 border border-slate-700 shadow-2xl backdrop-blur-md text-[11px] sm:text-xs font-mono">
+        <button
+          onClick={() => handleOpenBooking()}
+          className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded bg-sky-950/80 border border-sky-500/40 text-sky-300 hover:text-white transition-colors"
+          title="Schedule Recruiter Interview / 15-Min Sync"
+        >
+          <Calendar className="w-3.5 h-3.5 text-sky-400" />
+          <span className="hidden xs:inline">[ 📅 BOOK ]</span>
+          <span className="xs:hidden">SYNC</span>
+        </button>
+
         <button
           onClick={() => setIsTerminalOpen(true)}
           className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 hover:text-white transition-colors"
@@ -225,6 +282,13 @@ export const App: React.FC = () => {
         onOpenArcade={() => setIsArcadeOpen(true)}
         onReboot={handleReboot}
         onDegauss={handleDegauss}
+        onOpenBooking={() => handleOpenBooking()}
+      />
+
+      <RecruiterBookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+        initialRole={bookingRole}
       />
 
       <AITwinModal
@@ -244,11 +308,14 @@ export const App: React.FC = () => {
         onOpenSandbox={() => setIsSandboxModalOpen(true)}
         onOpenAiTwin={() => setIsAITwinOpen(true)}
         onOpenContact={() => handleNavigateSection('contact')}
+        onOpenBooking={() => handleOpenBooking()}
         onOpenQuiz={() => setIsQuizOpen(true)}
         onOpenArcade={() => setIsArcadeOpen(true)}
         onReboot={handleReboot}
         onDegauss={handleDegauss}
         onNavigateSection={handleNavigateSection}
+        viewMode={viewMode}
+        onToggleViewMode={handleToggleViewMode}
       />
 
       <CertificationQuizModal

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Database, Cloud, ShieldCheck, Zap, ArrowRight, Play, CornerDownLeft, Box, Rotate3d } from 'lucide-react';
+import { Terminal, Cpu, Database, Cloud, ShieldCheck, Zap, ArrowRight, Play, CornerDownLeft, Box, Rotate3d, Calendar } from 'lucide-react';
 import { RetroWireframeCanvas } from './RetroWireframeCanvas';
 import { retroAudio } from '../utils/retroAudio';
 
@@ -8,6 +8,7 @@ interface HeroProps {
   onOpenAITwin?: () => void;
   onOpenSandbox?: () => void;
   onNavigateSection?: (sectionId: string) => void;
+  onOpenBooking?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -15,6 +16,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenAITwin,
   onOpenSandbox,
   onNavigateSection,
+  onOpenBooking,
 }) => {
   const [typedText, setTypedText] = useState('');
   const [rightColView, setRightColView] = useState<'crt' | '3d'>('crt');
@@ -115,6 +117,20 @@ export const Hero: React.FC<HeroProps> = ({
                   <Terminal className="w-4 h-4" />
                   <span>$ ./launch_cli.sh</span>
                 </button>
+
+                {onOpenBooking && (
+                  <button
+                    onClick={() => {
+                      retroAudio.playTerminalBeep(1100, 0.05);
+                      onOpenBooking();
+                    }}
+                    className="flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded bg-emerald-950/80 border border-emerald-500/50 hover:border-emerald-400 text-emerald-300 hover:text-white font-bold text-xs tracking-wider uppercase transition-all active:scale-95 w-full xs:w-auto shadow-[0_0_15px_rgba(16,185,129,0.15)]"
+                    title="Direct calendar booking for recruiters and engineering managers"
+                  >
+                    <Calendar className="w-4 h-4 text-emerald-400" />
+                    <span>[ SCHEDULE_SYNC ]</span>
+                  </button>
+                )}
 
                 {onOpenSandbox && (
                   <button

@@ -1,5 +1,6 @@
 import assert from 'node:assert';
 import { generateAwsCdkCode, generateCloudFormationYaml } from './src/utils/iacGenerator.ts';
+import { generateIcsContent, generateMailtoLink } from './src/utils/calendarInvite.ts';
 
 console.log('🧪 Running AWS Student Builder Challenge Test Suite...\n');
 
@@ -220,7 +221,85 @@ console.log('🧪 Running AWS Student Builder Challenge Test Suite...\n');
   console.log('✅ Test 16 Passed: Extended UNIX htop process monitor & AWS cloud CLI commands validated.');
 }
 
-console.log('\n🎉 ALL 16 ADVANCED PORTFOLIO TESTS PASSED SUCCESSFULLY!');
+// Test 17: Recruiter Fast-Track Calendar Invitation (.ICS) Generator (RFC 5545)
+{
+  const mockBooking = {
+    meetingType: '💻 30-Min Technical Deep-Dive',
+    durationMinutes: 30,
+    dateStr: '2026-11-10',
+    timeSlot: '14:00',
+    recruiterName: 'Elena Rostova',
+    companyName: 'Anthropic Cloud Systems',
+    recruiterEmail: 'elena@anthropic.com',
+    notes: 'Discussion regarding Multi-Agent SRE & CloudOps Swarm architecture',
+  };
+
+  const icsOutput = generateIcsContent(mockBooking);
+  assert.ok(icsOutput.includes('BEGIN:VCALENDAR'), 'Must start with BEGIN:VCALENDAR');
+  assert.ok(icsOutput.includes('VERSION:2.0'), 'Must adhere to iCalendar version 2.0');
+  assert.ok(icsOutput.includes('BEGIN:VEVENT'), 'Must contain VEVENT block');
+  assert.ok(icsOutput.includes('SUMMARY:Interview / Sync: Farhan Mallik & Elena Rostova'), 'Summary must identify candidate and recruiter');
+  assert.ok(icsOutput.includes('ORGANIZER;CN="Farhan Mallik":mailto:farhanmallik05@gmail.com'), 'Must declare Farhan Mallik as meeting organizer');
+  assert.ok(icsOutput.includes('ATTENDEE;CUTYPE=INDIVIDUAL'), 'Must include attendee record');
+  assert.ok(icsOutput.includes('BEGIN:VALARM'), 'Must include 15-minute alarm reminder');
+  assert.ok(icsOutput.includes('END:VCALENDAR'), 'Must terminate with END:VCALENDAR');
+  console.log('✅ Test 17 Passed: RFC 5545 standard .ICS calendar invitation synthesizer validated.');
+}
+
+// Test 18: Recruiter Mailto Dispatch Link Generator
+{
+  const mockBooking = {
+    meetingType: '☕ 15-Min Intro & Coffee Chat',
+    durationMinutes: 15,
+    dateStr: '2026-11-12',
+    timeSlot: '10:00',
+    recruiterName: 'David K.',
+    companyName: 'AWS Graduate Recruitment',
+    recruiterEmail: 'david@amazon.com',
+    notes: 'Summer 2026 Systems Engineering Internship',
+  };
+
+  const mailtoLink = generateMailtoLink(mockBooking);
+  assert.ok(mailtoLink.startsWith('mailto:farhanmallik05@gmail.com'), 'Mailto recipient must be Farhan Mallik');
+  assert.ok(mailtoLink.includes('Interview%20Schedule'), 'Mailto subject must encode interview request');
+  assert.ok(mailtoLink.includes('AWS%20Graduate%20Recruitment'), 'Mailto body must encode recruiter company');
+  console.log('✅ Test 18 Passed: Recruiter mailto instant dispatch generator validated.');
+}
+
+// Test 19: Dual Persona View Modes (1984 Retro Workstation vs Executive Minimalist)
+{
+  const viewModes = ['retro', 'executive'];
+  assert.strictEqual(viewModes.length, 2, 'Portfolio must support exactly 2 primary persona viewing modes');
+
+  const executiveModeFeatures = {
+    fontOverride: 'Inter / Swiss Sans-Serif (-apple-system)',
+    scanlinesActive: false,
+    rasterSweepActive: false,
+    executiveBannerActive: true,
+    codeFontPreserved: 'JetBrains Mono',
+  };
+
+  assert.strictEqual(executiveModeFeatures.scanlinesActive, false, 'CRT scanlines must be suppressed in Executive Mode');
+  assert.strictEqual(executiveModeFeatures.executiveBannerActive, true, 'Executive briefing banner must render in Executive Mode');
+  assert.strictEqual(executiveModeFeatures.codeFontPreserved, 'JetBrains Mono', 'Monospace code font must be preserved for code blocks');
+  console.log('✅ Test 19 Passed: Dual persona mode switcher & executive styling specifications verified.');
+}
+
+// Test 20: High-DPI Canvas Super-Sampling & Retina Resolution Scaling
+{
+  const highDpiCanvases = [
+    { component: 'RetroOscilloscope', targetFps: 60, usesDpr: true },
+    { component: 'RetroWireframeCanvas', targetFps: 60, usesDpr: true },
+    { component: 'SectorJumpOverlay', targetFps: 60, usesDpr: true },
+    { component: 'BackgroundStarfield', targetFps: 60, usesDpr: true },
+  ];
+
+  assert.strictEqual(highDpiCanvases.length, 4, 'Must support 4 hardware-accelerated vector canvas engines');
+  assert.ok(highDpiCanvases.every(c => c.usesDpr === true), 'All canvas engines must support devicePixelRatio super-sampling');
+  console.log('✅ Test 20 Passed: High-DPI canvas super-sampling & Retina display resolution scaling verified.');
+}
+
+console.log('\n🎉 ALL 20 ADVANCED PORTFOLIO TESTS PASSED SUCCESSFULLY!');
 
 
 

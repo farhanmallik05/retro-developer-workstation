@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Mail, Send, Radio, CheckCircle2, AlertCircle, Terminal, ExternalLink } from 'lucide-react';
+import { Mail, Send, Radio, CheckCircle2, AlertCircle, Terminal, ExternalLink, Calendar } from 'lucide-react';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  onOpenBooking?: () => void;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenBooking }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -145,12 +149,23 @@ export const ContactSection: React.FC = () => {
                   <Mail className="w-3.5 h-3.5 text-emerald-400" />
                   <span>DIRECT_INBOX:</span>
                   <a
-                    href="mailto:farhan@example.edu"
-                    className="text-white hover:text-emerald-400 underline"
+                    href="mailto:farhanmallick2005@gmail.com"
+                    className="text-white hover:text-emerald-400 underline font-mono"
                   >
-                    farhan@example.edu
+                    farhanmallick2005@gmail.com
                   </a>
                 </div>
+
+                {onOpenBooking && (
+                  <button
+                    type="button"
+                    onClick={onOpenBooking}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 hover:text-white hover:border-emerald-400 transition-colors text-[11px]"
+                  >
+                    <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>[ 📅 FAST-TRACK CALENDAR BOOKING ]</span>
+                  </button>
+                )}
               </div>
             </form>
           )}

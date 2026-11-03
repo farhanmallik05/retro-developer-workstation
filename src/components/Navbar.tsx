@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles, Volume2, VolumeX, RotateCcw, Zap } from 'lucide-react';
+import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles, Volume2, VolumeX, RotateCcw, Zap, Calendar } from 'lucide-react';
 import { ScrollTelemetryHud } from './ScrollTelemetryHud';
 import { RetroOscilloscope } from './RetroOscilloscope';
 import { retroAudio } from '../utils/retroAudio';
@@ -11,6 +11,7 @@ interface NavbarProps {
   onOpenAITwin?: () => void;
   onOpenSandbox?: () => void;
   onOpenContact: () => void;
+  onOpenBooking?: () => void;
   onOpenCommandPalette?: () => void;
   onOpenArcade?: () => void;
   onNavigateSection?: (sectionId: string) => void;
@@ -20,6 +21,8 @@ interface NavbarProps {
   onToggleCrt?: () => void;
   activeSection?: string;
   onSectorChange?: (sectorId: string) => void;
+  viewMode?: 'retro' | 'executive';
+  onToggleViewMode?: (mode: 'retro' | 'executive') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -27,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAITwin,
   onOpenSandbox,
   onOpenContact,
+  onOpenBooking,
   onOpenCommandPalette,
   onOpenArcade,
   onNavigateSection,
@@ -36,6 +40,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleCrt,
   activeSection = 'hero',
   onSectorChange,
+  viewMode = 'retro',
+  onToggleViewMode,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
@@ -109,6 +115,42 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         <div className="flex items-center gap-2.5">
           <span className="text-slate-500 font-mono hidden xl:inline">{currentTime}</span>
+
+          {/* Persona Mode Switcher: Retro Workstation vs Executive Minimalist */}
+          {onToggleViewMode && (
+            <div className="flex items-center rounded bg-slate-900/90 p-0.5 border border-slate-700/80 text-[10px] font-bold">
+              <button
+                onClick={() => {
+                  retroAudio.playKeyClick();
+                  onToggleViewMode('retro');
+                }}
+                className={`px-2 py-0.5 rounded transition-all flex items-center gap-1 ${
+                  viewMode === 'retro'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+                title="Switch to 1984 Cyberpunk CRT Developer Workstation"
+              >
+                <span>🕹️</span>
+                <span>RETRO</span>
+              </button>
+              <button
+                onClick={() => {
+                  retroAudio.playKeyClick();
+                  onToggleViewMode('executive');
+                }}
+                className={`px-2 py-0.5 rounded transition-all flex items-center gap-1 ${
+                  viewMode === 'executive'
+                    ? 'bg-sky-600 text-white shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+                title="Switch to Executive Minimalist View (Recruiter & Clean UI)"
+              >
+                <span>🏛️</span>
+                <span>EXECUTIVE</span>
+              </button>
+            </div>
+          )}
 
           {/* CRT Color Phosphor Palette Cycler */}
           <button
@@ -323,6 +365,21 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           )}
 
+          {onOpenBooking && (
+            <button
+              onClick={() => {
+                retroAudio.playTerminalBeep(1100, 0.05);
+                onOpenBooking();
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-emerald-950/70 border border-emerald-500/50 text-emerald-300 hover:bg-emerald-900/70 hover:border-emerald-400 transition-all text-xs font-bold shadow-[0_0_12px_rgba(16,185,129,0.2)]"
+              title="Schedule Recruiter Interview / Coffee Chat"
+            >
+              <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="hidden xl:inline">SCHEDULE_CHAT</span>
+              <span className="xl:hidden">SYNC</span>
+            </button>
+          )}
+
           <button
             onClick={onOpenTerminal}
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/50 hover:border-emerald-400 hover:text-emerald-200 transition-all text-xs font-bold shadow-[0_0_15px_rgba(16,185,129,0.15)] active:scale-95"
@@ -365,6 +422,52 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>FM-OS MOBILE SHELL</span>
             <span className="text-emerald-400">READY</span>
           </div>
+
+          {onToggleViewMode && (
+            <div className="flex items-center justify-between p-1 bg-slate-900 rounded border border-slate-700 text-[11px] font-bold">
+              <span className="text-slate-400 pl-1">VIEW_MODE:</span>
+              <div className="flex gap-1">
+                <button
+                  onClick={() => {
+                    retroAudio.playKeyClick();
+                    onToggleViewMode('retro');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`px-2.5 py-1 rounded transition-colors ${
+                    viewMode === 'retro' ? 'bg-emerald-600 text-white' : 'text-slate-400'
+                  }`}
+                >
+                  🕹️ RETRO
+                </button>
+                <button
+                  onClick={() => {
+                    retroAudio.playKeyClick();
+                    onToggleViewMode('executive');
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`px-2.5 py-1 rounded transition-colors ${
+                    viewMode === 'executive' ? 'bg-sky-600 text-white' : 'text-slate-400'
+                  }`}
+                >
+                  🏛️ EXECUTIVE
+                </button>
+              </div>
+            </div>
+          )}
+
+          {onOpenBooking && (
+            <button
+              onClick={() => {
+                retroAudio.playTerminalBeep(1100, 0.05);
+                setMobileMenuOpen(false);
+                onOpenBooking();
+              }}
+              className="flex items-center justify-between w-full py-2 px-2.5 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold"
+            >
+              <span>&gt; 📅 // SCHEDULE 15-MIN RECRUITER SYNC</span>
+              <span className="text-[10px] bg-emerald-500/20 px-1.5 py-0.5 rounded text-emerald-300">BOOK</span>
+            </button>
+          )}
           <button
             onClick={() => scrollTo('hero')}
             className={`block w-full text-left py-1.5 px-2 rounded ${

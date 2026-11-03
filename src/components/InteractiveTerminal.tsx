@@ -11,6 +11,7 @@ interface InteractiveTerminalProps {
   onOpenArcade?: () => void;
   onReboot?: () => void;
   onDegauss?: () => void;
+  onOpenBooking?: () => void;
 }
 
 export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
@@ -19,6 +20,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
   onOpenArcade,
   onReboot,
   onDegauss,
+  onOpenBooking,
 }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
@@ -99,6 +101,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">theme &lt;id&gt;</span> Change CRT phosphor (emerald, amber, cyan, white)</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">degauss</span> Coil demagnetization shockwave &amp; audio pulse</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">arcade</span> Launch CYBER-RUNNER 1984 2D arcade minigame</p>
+            <p><span className="text-emerald-400 font-mono w-28 inline-block font-bold">schedule</span> Fast-track recruiter booking &amp; .ics download</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">reboot</span> Reboot workstation &amp; replay BIOS POST screen</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">matrix</span> Toggle falling digital matrix rain</p>
             <p><span className="text-emerald-400 font-mono w-28 inline-block font-bold">sudo hire</span> Recruiter direct link &amp; easter egg 🎉</p>
@@ -221,10 +224,10 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
           origin: { y: 0.6 },
         });
         resultNode = (
-          <div className="p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/50 text-emerald-200 space-y-1.5 text-xs">
+          <div className="p-4 rounded-xl bg-emerald-950/70 border border-emerald-500/50 text-emerald-200 space-y-2 text-xs">
             <p className="font-bold text-sm text-emerald-400 flex items-center gap-1.5">
               <Sparkles className="w-4 h-4" />
-              Recruiter & Hackathon Judge Access Granted!
+              Recruiter &amp; Hackathon Judge Access Granted!
             </p>
             <p>Thank you for exploring my engineering showcase! I am actively open to Full-Stack, Cloud, and AI Systems Engineering opportunities.</p>
             <p className="pt-1">
@@ -234,6 +237,32 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
               🎓 Education: B.Tech in CSE &amp; IT (2024–2028), KCC ITM, Greater Noida<br />
               🏆 Recognition: Campus Lead 2026 (Open Source Connect Global) • 2x Hackathon Finalist
             </p>
+            {onOpenBooking && (
+              <div className="pt-2">
+                <button
+                  onClick={() => onOpenBooking()}
+                  className="px-3 py-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-[0_0_10px_rgba(16,185,129,0.3)] transition-all flex items-center gap-1.5"
+                >
+                  <span>📅 Launch Recruiter Scheduling Calendar</span>
+                </button>
+              </div>
+            )}
+          </div>
+        );
+        break;
+
+      case 'schedule':
+      case 'book':
+      case 'interview':
+      case 'calendar':
+        if (onOpenBooking) {
+          retroAudio.playTerminalBeep(1100, 0.08);
+          onOpenBooking();
+        }
+        resultNode = (
+          <div className="p-3 rounded bg-emerald-950/60 border border-emerald-500/40 text-emerald-200 space-y-1 font-mono text-xs">
+            <p className="text-emerald-400 font-bold">📅 RECRUITER CALENDAR SYNC LAUNCHED</p>
+            <p>Direct scheduling console opened. Select your preferred slot and download RFC 5545 .ICS calendar invite or dispatch direct email.</p>
           </div>
         );
         break;

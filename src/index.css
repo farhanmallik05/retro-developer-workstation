@@ -361,3 +361,33 @@
   animation: crt-degauss-shake 0.55s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
+/* ==========================================================================
+   EXECUTIVE MINIMALIST MODE (SWISS EDITORIAL & CLEAN RECRUITER THEME)
+   ========================================================================== */
+.executive-mode {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.executive-mode .font-mono {
+  font-family: inherit;
+}
+
+.executive-mode code,
+.executive-mode pre,
+.executive-mode .code-font,
+.executive-mode kbd {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace !important;
+}
+
+.executive-mode.crt-scanlines::after,
+.executive-mode .crt-scanlines::after {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+.executive-mode .crt-beam-sweep {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+

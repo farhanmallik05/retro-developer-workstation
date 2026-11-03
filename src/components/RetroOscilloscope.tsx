@@ -21,6 +21,14 @@ export const RetroOscilloscope: React.FC<RetroOscilloscopeProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+
     let time = 0;
 
     const render = () => {
@@ -124,3 +132,4 @@ export const RetroOscilloscope: React.FC<RetroOscilloscopeProps> = ({
     </div>
   );
 };
+

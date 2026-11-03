@@ -27,8 +27,15 @@ export const BackgroundStarfield: React.FC = () => {
     const reducedMotion = prefersReducedMotion();
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = typeof window !== 'undefined' ? window.devicePixelRatio || 1 : 1;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -38,8 +45,8 @@ export const BackgroundStarfield: React.FC = () => {
     const stars: Star[] = Array.from({ length: numStars }, () => {
       const isCyan = Math.random() > 0.6;
       return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
         size: Math.random() * 1.8 + 0.6,
         baseAlpha: Math.random() * 0.35 + 0.1,
         alpha: Math.random() * 0.35 + 0.1,
@@ -61,7 +68,9 @@ export const BackgroundStarfield: React.FC = () => {
         return;
       }
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
 
       for (let i = 0; i < stars.length; i++) {
         const s = stars[i];
@@ -78,11 +87,11 @@ export const BackgroundStarfield: React.FC = () => {
 
           // Screen wrap
           if (s.y < 0) {
-            s.y = canvas.height;
-            s.x = Math.random() * canvas.width;
+            s.y = h;
+            s.x = Math.random() * w;
           }
-          if (s.x < 0) s.x = canvas.width;
-          if (s.x > canvas.width) s.x = 0;
+          if (s.x < 0) s.x = w;
+          if (s.x > w) s.x = 0;
         }
 
         ctx.fillStyle = `${s.color} ${Math.max(0.05, Math.min(0.8, s.alpha))})`;

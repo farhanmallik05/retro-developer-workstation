@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Terminal, Layers, Bot, Mail, Award, FolderGit2, X, Sparkles, Palette, Zap } from 'lucide-react';
+import { Search, Terminal, Layers, Bot, Mail, Award, FolderGit2, X, Sparkles, Palette, Zap, Calendar } from 'lucide-react';
 import { themeEngine } from '../utils/themeEngine';
 import { retroAudio } from '../utils/retroAudio';
 
@@ -10,11 +10,14 @@ interface CommandPaletteProps {
   onOpenSandbox: () => void;
   onOpenAiTwin: () => void;
   onOpenContact: () => void;
+  onOpenBooking?: () => void;
   onOpenQuiz?: () => void;
   onOpenArcade?: () => void;
   onReboot?: () => void;
   onDegauss?: () => void;
   onNavigateSection: (sectionId: string) => void;
+  viewMode?: 'retro' | 'executive';
+  onToggleViewMode?: (mode: 'retro' | 'executive') => void;
 }
 
 interface CommandAction {
@@ -33,11 +36,14 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onOpenSandbox,
   onOpenAiTwin,
   onOpenContact,
+  onOpenBooking,
   onOpenQuiz,
   onOpenArcade,
   onReboot,
   onDegauss,
   onNavigateSection,
+  viewMode = 'retro',
+  onToggleViewMode,
 }) => {
   const [query, setQuery] = useState('');
 
@@ -62,6 +68,30 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   if (!isOpen) return null;
 
   const actions: CommandAction[] = [
+    ...(onOpenBooking ? [{
+      id: 'cmd-schedule',
+      title: 'Schedule Recruiter Interview / 15-Min Sync',
+      subtitle: 'Open fast-track calendar scheduler & download RFC 5545 .ics invite',
+      category: 'Contact' as const,
+      icon: <Calendar className="w-4 h-4 text-emerald-400" />,
+      run: () => {
+        onClose();
+        retroAudio.playTerminalBeep(1100, 0.05);
+        onOpenBooking();
+      },
+    }] : []),
+    ...(onToggleViewMode ? [{
+      id: 'cmd-toggle-persona',
+      title: viewMode === 'retro' ? 'Switch to Executive Minimalist Mode' : 'Switch to 1984 Retro Workstation',
+      subtitle: viewMode === 'retro' ? 'Clean Swiss editorial theme tailored for recruiters & hiring managers' : 'Cyberpunk CRT scanlines & phosphor green terminal aesthetic',
+      category: 'Superpower' as const,
+      icon: <Sparkles className="w-4 h-4 text-sky-400" />,
+      run: () => {
+        onClose();
+        retroAudio.playKeyClick();
+        onToggleViewMode(viewMode === 'retro' ? 'executive' : 'retro');
+      },
+    }] : []),
     {
       id: 'cmd-degauss',
       title: 'Degauss CRT Monitor Screen',
