@@ -13,6 +13,7 @@ import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { AITwinModal } from './components/AITwinModal';
 import { CommandPalette } from './components/CommandPalette';
 import { CertificationQuizModal } from './components/CertificationQuizModal';
+import { RetroArcadeModal } from './components/RetroArcadeModal';
 import { ScrollToTopBooster } from './components/ScrollToTopBooster';
 import { Terminal, Cpu, Cloud, Bot, Sparkles } from 'lucide-react';
 
@@ -22,6 +23,7 @@ export const App: React.FC = () => {
   const [isSandboxModalOpen, setIsSandboxModalOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isQuizOpen, setIsQuizOpen] = useState(false);
+  const [isArcadeOpen, setIsArcadeOpen] = useState(false);
   const [isCrtActive, setIsCrtActive] = useState(true);
   const [activeSection, setActiveSection] = useState('hero');
 
@@ -42,6 +44,7 @@ export const App: React.FC = () => {
         onOpenSandbox={() => setIsSandboxModalOpen(true)}
         onOpenContact={() => handleNavigateSection('contact')}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
+        onOpenArcade={() => setIsArcadeOpen(true)}
         isCrtActive={isCrtActive}
         onToggleCrt={() => setIsCrtActive((prev) => !prev)}
         activeSection={activeSection}
@@ -103,6 +106,15 @@ export const App: React.FC = () => {
         </button>
 
         <button
+          onClick={() => setIsArcadeOpen(true)}
+          className="flex items-center gap-1 px-3 py-1.5 rounded bg-amber-950/80 border border-amber-500/40 text-amber-300 hover:text-white transition-colors"
+          title="Launch CYBER-RUNNER 1984 2D Arcade ROM"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>[ 🕹️ ARCADE ]</span>
+        </button>
+
+        <button
           onClick={() => setIsCommandPaletteOpen(true)}
           className="px-2 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition-colors"
           title="Command Palette"
@@ -118,6 +130,7 @@ export const App: React.FC = () => {
       <InteractiveTerminal
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
+        onOpenArcade={() => setIsArcadeOpen(true)}
       />
 
       <AITwinModal
@@ -138,12 +151,18 @@ export const App: React.FC = () => {
         onOpenAiTwin={() => setIsAITwinOpen(true)}
         onOpenContact={() => handleNavigateSection('contact')}
         onOpenQuiz={() => setIsQuizOpen(true)}
+        onOpenArcade={() => setIsArcadeOpen(true)}
         onNavigateSection={handleNavigateSection}
       />
 
       <CertificationQuizModal
         isOpen={isQuizOpen}
         onClose={() => setIsQuizOpen(false)}
+      />
+
+      <RetroArcadeModal
+        isOpen={isArcadeOpen}
+        onClose={() => setIsArcadeOpen(false)}
       />
     </div>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { Cpu, Cloud, Code, Wrench, Shield, Database, Terminal, Server } from 'lucide-react';
 import { RetroReveal } from './RetroReveal';
 import { RetroDecoderText } from './RetroDecoderText';
+import { IsometricMotherboard } from './IsometricMotherboard';
 
 export const Skills: React.FC = () => {
   const modules = [
@@ -103,39 +104,11 @@ export const Skills: React.FC = () => {
           </div>
         </RetroReveal>
 
-        {/* Modules Grid */}
-        <div className="grid sm:grid-cols-2 gap-6 mt-10">
-          {modules.map((m, idx) => (
-            <RetroReveal key={m.moduleId} animation="scale" delay={idx * 80}>
-              <div
-                className="p-6 rounded-lg bg-[#0b101c] border border-slate-800 hover:border-emerald-500/40 transition-all font-mono glitch-hover h-full"
-              >
-                {/* Module Header Bar */}
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
-                  <div className="flex items-center gap-2 text-white font-bold">
-                    {m.icon}
-                    <span>{m.title}</span>
-                  </div>
-                  <span className="text-[10px] text-slate-500">{m.address}</span>
-                </div>
-
-                {/* Pinout Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4">
-                  {m.skills.map((skill, sidx) => (
-                    <div
-                      key={skill}
-                      className="flex items-center gap-2 p-2 rounded bg-[#070b14] border border-slate-800/80 text-xs text-slate-300 hover:border-emerald-500/40 hover:text-emerald-300 transition-colors"
-                    >
-                      <span className="text-[10px] text-emerald-500 font-bold font-mono">
-                        P{(sidx + 1).toString().padStart(2, '0')}
-                      </span>
-                      <span className="truncate">{skill}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </RetroReveal>
-          ))}
+        {/* 2.5D Isometric Silicon Motherboard & Pinout Engine */}
+        <div className="mt-10">
+          <RetroReveal animation="scale">
+            <IsometricMotherboard />
+          </RetroReveal>
         </div>
       </div>
     </section>

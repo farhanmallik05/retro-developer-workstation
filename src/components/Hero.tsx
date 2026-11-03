@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Database, Cloud, ShieldCheck, Zap, ArrowRight, Play, CornerDownLeft } from 'lucide-react';
+import { Terminal, Cpu, Database, Cloud, ShieldCheck, Zap, ArrowRight, Play, CornerDownLeft, Box, Rotate3d } from 'lucide-react';
+import { RetroWireframeCanvas } from './RetroWireframeCanvas';
+import { retroAudio } from '../utils/retroAudio';
 
 interface HeroProps {
   onOpenTerminal: () => void;
@@ -13,6 +15,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenSandbox,
 }) => {
   const [typedText, setTypedText] = useState('');
+  const [rightColView, setRightColView] = useState<'crt' | '3d'>('crt');
   const fullCommand = 'strands-agent-swarm --init --bedrock --aws-region us-east-1';
 
   useEffect(() => {
@@ -147,59 +150,98 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
             </div>
 
-            {/* Right Column: Interactive CRT Mainframe Monitor */}
-            <div className="lg:col-span-5 relative">
-              <div className="rounded-xl bg-[#050811] border-2 border-slate-700 shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden font-mono text-xs">
-                {/* CRT Screen Bezel Top */}
-                <div className="px-4 py-2 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                  <div className="flex items-center gap-2">
-                    <Zap className="w-3.5 h-3.5 text-amber-400" />
-                    <span className="font-bold text-slate-200">CRT_MONITOR // DIAGNOSTIC_BUS</span>
-                  </div>
-                  <span className="text-emerald-400 text-[10px] animate-pulse">● LIVE</span>
-                </div>
-
-                {/* CRT Terminal Screen Output */}
-                <div className="p-4 space-y-3 bg-[#03060c] text-slate-300 min-h-[360px] flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <div className="text-emerald-400 text-[10px] sm:text-[11px] break-all leading-relaxed">
-                      <span>root@aws-node-us-east-1:~$ </span>
-                      <span className="text-white font-bold">{typedText}</span>
-                      <span className="animate-cursor-blink text-emerald-400">█</span>
-                    </div>
-
-                    <div className="p-2.5 rounded bg-slate-950/90 border border-slate-800/80 space-y-1.5 text-[11px]">
-                      <p className="text-amber-400 font-bold">[+] GHAR SEARCH: AGENTIC DUE-DILIGENCE</p>
-                      <p className="text-slate-400">• Engine: LangGraph (0.2) + TinyFish Web Agents</p>
-                      <p className="text-slate-400">• Verification: 6 Parallel Workers across 1.5L+ RERA Records</p>
-                      <p className="text-emerald-400 font-bold">• Deterministic Trust Score: 0–100 in &lt;90s (140 Tests)</p>
-                    </div>
-
-                    <div className="p-2.5 rounded bg-slate-950/90 border border-slate-800/80 space-y-1.5 text-[11px]">
-                      <p className="text-purple-400 font-bold">[+] CLOUDOPS AUTONOMOUS SWARM READY</p>
-                      <p className="text-slate-400">• Engine: Strands SDK + Bedrock (Claude 3.5 Sonnet)</p>
-                      <p className="text-slate-400">• Active Agents: Triage, LogDiagnostic, DiffAnalyzer, Fixer</p>
-                      <p className="text-emerald-400 font-bold">• Accuracy: 5/5 Benchmark Scenarios PASSED (28s MTTD)</p>
-                    </div>
-                  </div>
-
-                  {/* Interactive Quick Run Ribbon inside CRT */}
-                  <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px]">
-                    <div className="flex items-center gap-2 text-slate-400">
-                      <span>Status:</span>
-                      <span className="text-emerald-400 font-bold">ALL_SERVICES_NOMINAL</span>
-                    </div>
-                    {onOpenAITwin && (
-                      <button
-                        onClick={onOpenAITwin}
-                        className="px-2.5 py-1 rounded bg-indigo-950/60 border border-indigo-500/40 text-indigo-300 hover:text-white transition-colors"
-                      >
-                        [ Query AI Twin ]
-                      </button>
-                    )}
-                  </div>
+            {/* Right Column: Interactive CRT Mainframe Monitor or 3D Vector Simulator */}
+            <div className="lg:col-span-5 relative space-y-3">
+              {/* Dual View Selector Tabs */}
+              <div className="flex items-center justify-between p-1 rounded-lg bg-[#0d121f] border border-slate-800 text-[10px] font-mono">
+                <span className="text-slate-500 pl-2">DISPLAY_CORE:</span>
+                <div className="flex gap-1">
+                  <button
+                    onClick={() => {
+                      retroAudio.playHoverBlip();
+                      setRightColView('crt');
+                    }}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+                      rightColView === 'crt'
+                        ? 'bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <Zap className="w-3 h-3 text-amber-400" />
+                    <span>[ 01: CRT_DIAGNOSTIC ]</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      retroAudio.playHoverBlip();
+                      setRightColView('3d');
+                    }}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded transition-colors ${
+                      rightColView === '3d'
+                        ? 'bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 font-bold'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    <Rotate3d className="w-3 h-3 text-cyan-400" />
+                    <span>[ 02: 3D_VECTOR_ORBIT ]</span>
+                  </button>
                 </div>
               </div>
+
+              {rightColView === '3d' ? (
+                <RetroWireframeCanvas />
+              ) : (
+                <div className="rounded-xl bg-[#050811] border-2 border-slate-700 shadow-[0_0_40px_rgba(0,0,0,0.8)] overflow-hidden font-mono text-xs">
+                  {/* CRT Screen Bezel Top */}
+                  <div className="px-4 py-2 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-3.5 h-3.5 text-amber-400" />
+                      <span className="font-bold text-slate-200">CRT_MONITOR // DIAGNOSTIC_BUS</span>
+                    </div>
+                    <span className="text-emerald-400 text-[10px] animate-pulse">● LIVE</span>
+                  </div>
+
+                  {/* CRT Terminal Screen Output */}
+                  <div className="p-4 space-y-3 bg-[#03060c] text-slate-300 min-h-[360px] flex flex-col justify-between">
+                    <div className="space-y-2">
+                      <div className="text-emerald-400 text-[10px] sm:text-[11px] break-all leading-relaxed">
+                        <span>root@aws-node-us-east-1:~$ </span>
+                        <span className="text-white font-bold">{typedText}</span>
+                        <span className="animate-cursor-blink text-emerald-400">█</span>
+                      </div>
+
+                      <div className="p-2.5 rounded bg-slate-950/90 border border-slate-800/80 space-y-1.5 text-[11px]">
+                        <p className="text-amber-400 font-bold">[+] GHAR SEARCH: AGENTIC DUE-DILIGENCE</p>
+                        <p className="text-slate-400">• Engine: LangGraph (0.2) + TinyFish Web Agents</p>
+                        <p className="text-slate-400">• Verification: 6 Parallel Workers across 1.5L+ RERA Records</p>
+                        <p className="text-emerald-400 font-bold">• Deterministic Trust Score: 0–100 in &lt;90s (140 Tests)</p>
+                      </div>
+
+                      <div className="p-2.5 rounded bg-slate-950/90 border border-slate-800/80 space-y-1.5 text-[11px]">
+                        <p className="text-purple-400 font-bold">[+] CLOUDOPS AUTONOMOUS SWARM READY</p>
+                        <p className="text-slate-400">• Engine: Strands SDK + Bedrock (Claude 3.5 Sonnet)</p>
+                        <p className="text-slate-400">• Active Agents: Triage, LogDiagnostic, DiffAnalyzer, Fixer</p>
+                        <p className="text-emerald-400 font-bold">• Accuracy: 5/5 Benchmark Scenarios PASSED (28s MTTD)</p>
+                      </div>
+                    </div>
+
+                    {/* Interactive Quick Run Ribbon inside CRT */}
+                    <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px]">
+                      <div className="flex items-center gap-2 text-slate-400">
+                        <span>Status:</span>
+                        <span className="text-emerald-400 font-bold">ALL_SERVICES_NOMINAL</span>
+                      </div>
+                      {onOpenAITwin && (
+                        <button
+                          onClick={onOpenAITwin}
+                          className="px-2.5 py-1 rounded bg-indigo-950/60 border border-indigo-500/40 text-indigo-300 hover:text-white transition-colors"
+                        >
+                          [ Query AI Twin ]
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Status Badge */}
               <div className="mt-3 flex items-center justify-between px-3 py-1.5 rounded bg-[#0a0f1d] border border-slate-800 text-[10px] text-slate-400 font-mono">

@@ -6,11 +6,13 @@ import { TerminalOutputItem } from '../types/portfolio';
 interface InteractiveTerminalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpenArcade?: () => void;
 }
 
 export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
   isOpen,
   onClose,
+  onOpenArcade,
 }) => {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
@@ -62,6 +64,7 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">resume</span> Print complete plain-text resume</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">curl</span> Query live profile JSON API endpoint</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">oss</span> Display open source contributions &amp; leadership</p>
+            <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">arcade</span> Launch CYBER-RUNNER 1984 2D arcade minigame</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">matrix</span> Toggle falling digital matrix rain</p>
             <p><span className="text-emerald-400 font-mono w-28 inline-block font-bold">sudo hire</span> Recruiter direct link &amp; easter egg 🎉</p>
             <p><span className="text-cyan-400 font-mono w-28 inline-block font-bold">clear</span> Clear terminal screen</p>
@@ -207,6 +210,25 @@ export const InteractiveTerminal: React.FC<InteractiveTerminalProps> = ({
             {isMatrixActive ? 'Matrix Rain Deactivated.' : 'Matrix Rain Activated.'}
           </p>
         );
+        break;
+
+      case 'arcade':
+      case 'play':
+      case 'game':
+        if (onOpenArcade) {
+          onOpenArcade();
+          resultNode = (
+            <p className="text-emerald-400 font-mono text-xs">
+              🕹️ Launching CYBER-RUNNER 1984 Vector Arcade ROM... [INITIALIZED]
+            </p>
+          );
+        } else {
+          resultNode = (
+            <p className="text-emerald-400 font-mono text-xs">
+              Arcade available in the floating launcher bar.
+            </p>
+          );
+        }
         break;
 
       case 'clear':

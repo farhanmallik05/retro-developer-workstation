@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles } from 'lucide-react';
+import { Terminal, Cpu, Shield, Search, Layers, Bot, Radio, Menu, X, Sparkles, Volume2, VolumeX } from 'lucide-react';
 import { ScrollTelemetryHud } from './ScrollTelemetryHud';
+import { retroAudio } from '../utils/retroAudio';
 
 interface NavbarProps {
   onOpenTerminal: () => void;
@@ -8,6 +9,7 @@ interface NavbarProps {
   onOpenSandbox?: () => void;
   onOpenContact: () => void;
   onOpenCommandPalette?: () => void;
+  onOpenArcade?: () => void;
   isCrtActive?: boolean;
   onToggleCrt?: () => void;
   activeSection?: string;
@@ -20,6 +22,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSandbox,
   onOpenContact,
   onOpenCommandPalette,
+  onOpenArcade,
   isCrtActive = true,
   onToggleCrt,
   activeSection = 'hero',
@@ -27,6 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState('');
+  const [isMuted, setIsMuted] = useState(retroAudio.isMuted());
 
   useEffect(() => {
     const updateTime = () => {
@@ -40,7 +44,13 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => clearInterval(interval);
   }, []);
 
+  const handleToggleSound = () => {
+    const next = retroAudio.toggleMute();
+    setIsMuted(next);
+  };
+
   const scrollTo = (id: string) => {
+    retroAudio.playKeyClick();
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
@@ -67,6 +77,34 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         <div className="flex items-center gap-3">
           <span className="text-slate-500 font-mono">{currentTime}</span>
+
+          {/* Sound Synthesizer Toggle */}
+          <button
+            onClick={handleToggleSound}
+            className={`flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold border transition-colors ${
+              !isMuted
+                ? 'bg-cyan-950/60 border-cyan-500/50 text-cyan-400'
+                : 'bg-slate-900 border-slate-700 text-slate-500'
+            }`}
+            title="Toggle Retro Audio Synthesizer"
+          >
+            {!isMuted ? <Volume2 className="w-3 h-3 text-cyan-400" /> : <VolumeX className="w-3 h-3 text-slate-500" />}
+            <span>SFX: {!isMuted ? 'ON' : 'OFF'}</span>
+          </button>
+
+          {onOpenArcade && (
+            <button
+              onClick={() => {
+                retroAudio.playBootChime();
+                onOpenArcade();
+              }}
+              className="px-2 py-0.5 rounded text-[10px] font-bold border transition-colors bg-purple-950/60 border-purple-500/50 text-purple-300 hover:text-white hover:border-purple-400"
+              title="Launch CYBER-RUNNER 1984 Arcade ROM"
+            >
+              🕹️ ARCADE
+            </button>
+          )}
+
           {onToggleCrt && (
             <button
               onClick={onToggleCrt}
@@ -316,6 +354,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             &gt; 07 // TRANSMIT MESSAGE / HIRE
           </button>
+          {onOpenArcade && (
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenArcade();
+              }}
+              className="block w-full text-left py-1.5 px-2 rounded bg-purple-950/60 border border-purple-500/40 text-purple-300 font-bold mt-1"
+            >
+              &gt; 🕹️ // LAUNCH CYBER-RUNNER 1984 ARCADE
+            </button>
+          )}
         </div>
       )}
 

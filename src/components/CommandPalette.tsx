@@ -9,6 +9,7 @@ interface CommandPaletteProps {
   onOpenAiTwin: () => void;
   onOpenContact: () => void;
   onOpenQuiz?: () => void;
+  onOpenArcade?: () => void;
   onNavigateSection: (sectionId: string) => void;
 }
 
@@ -29,6 +30,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onOpenAiTwin,
   onOpenContact,
   onOpenQuiz,
+  onOpenArcade,
   onNavigateSection,
 }) => {
   const [query, setQuery] = useState('');
@@ -54,6 +56,17 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   if (!isOpen) return null;
 
   const actions: CommandAction[] = [
+    {
+      id: 'cmd-arcade',
+      title: 'Play CYBER-RUNNER 1984 Arcade ROM',
+      subtitle: '2D vector arcade minigame: collect packets, destroy bugs, seize overdrive shield',
+      category: 'Superpower',
+      icon: <Sparkles className="w-4 h-4 text-emerald-400" />,
+      run: () => {
+        onClose();
+        if (onOpenArcade) onOpenArcade();
+      },
+    },
     {
       id: 'cmd-terminal',
       title: 'Open Interactive Terminal CLI',

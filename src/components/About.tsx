@@ -2,6 +2,7 @@ import React from 'react';
 import { Terminal, ShieldCheck, MapPin, Award, BookOpen, ExternalLink, Cpu, Layers } from 'lucide-react';
 import { RetroReveal } from './RetroReveal';
 import { RetroDecoderText } from './RetroDecoderText';
+import { GsapOperatorManifesto } from './GsapOperatorManifesto';
 
 export const About: React.FC = () => {
   const chapters = [
@@ -62,6 +63,9 @@ export const About: React.FC = () => {
             </div>
           </div>
         </RetroReveal>
+
+        {/* GSAP Phosphor Kinetic Scrubbing Manifesto */}
+        <GsapOperatorManifesto />
 
         <div className="grid lg:grid-cols-12 gap-10 mt-10">
           {/* Left Column: Verified Identity Card */}

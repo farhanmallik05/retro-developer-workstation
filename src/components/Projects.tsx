@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ExternalLink, Github, Terminal, ArrowUpRight, Cpu, Zap, Shield, Layers, FileCode2 } from 'lucide-react';
 import { RetroReveal } from './RetroReveal';
 import { RetroDecoderText } from './RetroDecoderText';
+import { TiltCard25D } from './TiltCard25D';
 
 interface ProjectDossier {
   id: string;
@@ -151,85 +152,87 @@ export const Projects: React.FC = () => {
           </div>
         </RetroReveal>
 
-        {/* Dossiers Grid */}
+        {/* Dossiers Grid with 2.5D Tilt Physics */}
         <div className="grid lg:grid-cols-2 gap-8 mt-10">
           {dossiers.map((p, idx) => (
             <RetroReveal key={p.id} animation="fade-up" delay={idx * 80} className="h-full">
-              <div
-                className="flex flex-col justify-between h-full p-6 sm:p-8 rounded-lg bg-[#0b101c] border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-xl group glitch-hover"
-              >
-                <div>
-                  {/* Dossier Code & Status Banner */}
-                  <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 text-[11px] font-mono">
-                    <span className="text-emerald-400 font-bold">{p.code}</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-bold">
-                      {p.status}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-display font-bold text-xl sm:text-2xl text-white mt-4 group-hover:text-emerald-300 transition-colors">
-                    {p.title}
-                  </h3>
-
-                  {/* Category */}
-                  <p className="text-xs font-mono text-cyan-400 mt-1 uppercase tracking-wider">
-                    &gt; {p.category}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed font-mono">
-                    {p.description}
-                  </p>
-
-                  {/* Telemetry Matrix (4 Columns/Pills) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-5 p-3 rounded bg-[#070b14] border border-slate-800/80 font-mono text-xs">
-                    {p.telemetry.map((t, tidx) => (
-                      <div key={tidx} className="p-1.5">
-                        <span className="block text-[10px] text-slate-500 uppercase">{t.label}</span>
-                        <span className={`font-bold ${t.color} text-[11px] sm:text-xs break-words`}>{t.value}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Tech Stack Chips */}
-                  <div className="mt-5 flex flex-wrap gap-1.5">
-                    {p.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400"
-                      >
-                        {tech}
+              <TiltCard25D className="h-full">
+                <div
+                  className="flex flex-col justify-between h-full p-6 sm:p-8 rounded-lg bg-[#0b101c] border border-slate-800 hover:border-emerald-500/50 transition-all duration-300 shadow-xl group glitch-hover"
+                >
+                  <div>
+                    {/* Dossier Code & Status Banner */}
+                    <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 text-[11px] font-mono">
+                      <span className="text-emerald-400 font-bold">{p.code}</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-500/30 font-bold">
+                        {p.status}
                       </span>
-                    ))}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-display font-bold text-xl sm:text-2xl text-white mt-4 group-hover:text-emerald-300 transition-colors">
+                      {p.title}
+                    </h3>
+
+                    {/* Category */}
+                    <p className="text-xs font-mono text-cyan-400 mt-1 uppercase tracking-wider">
+                      &gt; {p.category}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-xs sm:text-sm text-slate-300 mt-3 leading-relaxed font-mono">
+                      {p.description}
+                    </p>
+
+                    {/* Telemetry Matrix (4 Columns/Pills) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-5 p-3 rounded bg-[#070b14] border border-slate-800/80 font-mono text-xs">
+                      {p.telemetry.map((t, tidx) => (
+                        <div key={tidx} className="p-1.5">
+                          <span className="block text-[10px] text-slate-500 uppercase">{t.label}</span>
+                          <span className={`font-bold ${t.color} text-[11px] sm:text-xs break-words`}>{t.value}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Tech Stack Chips */}
+                    <div className="mt-5 flex flex-wrap gap-1.5">
+                      {p.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Action Buttons */}
-                <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between font-mono text-xs">
-                  <a
-                    href={p.repoUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
-                  >
-                    <Github className="w-4 h-4 text-emerald-400" />
-                    <span>[ REPOSITORY ]</span>
-                  </a>
-
-                  {p.liveUrl && (
+                  {/* Action Buttons */}
+                  <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between font-mono text-xs">
                     <a
-                      href={p.liveUrl}
+                      href={p.repoUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 hover:underline font-bold"
+                      className="flex items-center gap-1.5 text-slate-400 hover:text-white transition-colors"
                     >
-                      <span>[ EXECUTE_LIVE ]</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <Github className="w-4 h-4 text-emerald-400" />
+                      <span>[ REPOSITORY ]</span>
                     </a>
-                  )}
+
+                    {p.liveUrl && (
+                      <a
+                        href={p.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-1 text-emerald-400 hover:text-emerald-300 hover:underline font-bold"
+                      >
+                        <span>[ EXECUTE_LIVE ]</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </TiltCard25D>
             </RetroReveal>
           ))}
         </div>
