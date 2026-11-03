@@ -31,14 +31,15 @@ export const ScrollToTopBooster: React.FC = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 z-40 animate-in fade-in duration-300">
+    <div className="fixed bottom-4 left-3 sm:left-4 z-40 animate-in fade-in duration-300">
       <button
         onClick={scrollToTop}
-        className="flex items-center gap-2 px-3 py-1.5 rounded bg-[#0b101c]/95 border border-emerald-500/40 text-emerald-400 hover:text-white hover:bg-emerald-950/80 hover:border-emerald-400 shadow-2xl backdrop-blur-md text-xs font-mono transition-all duration-200 group glitch-hover"
+        className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded bg-[#0b101c]/95 border border-emerald-500/40 text-emerald-400 hover:text-white hover:bg-emerald-950/80 hover:border-emerald-400 shadow-2xl backdrop-blur-md text-xs font-mono transition-all duration-200 group glitch-hover"
         title="Re-engage Boot Sector (Scroll to Top)"
       >
         <ArrowUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform text-emerald-400" />
-        <span className="font-bold tracking-wider">[ ^ BOOT_SECTOR ]</span>
+        <span className="hidden sm:inline font-bold tracking-wider">[ ^ BOOT_SECTOR ]</span>
+        <span className="sm:hidden font-bold text-[10px]">TOP</span>
       </button>
     </div>
   );

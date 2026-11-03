@@ -79,3 +79,4 @@ Your portfolio is live, fully responsive, and tested on GitHub Pages:
 
 ---
 *Created for Farhan Mallik • One Who Codes 2026 • Verified on 3 Nov 2026*
+

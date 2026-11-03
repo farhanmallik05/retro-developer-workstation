@@ -365,6 +365,33 @@ export const Navbar: React.FC<NavbarProps> = ({
               &gt; 🕹️ // LAUNCH CYBER-RUNNER 1984 ARCADE
             </button>
           )}
+
+          {/* Mobile Hardware Controls (CRT & Sound SFX) */}
+          <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] gap-2">
+            {onToggleCrt && (
+              <button
+                onClick={onToggleCrt}
+                className={`flex-1 py-1.5 px-2 rounded font-bold border text-center transition-colors ${
+                  isCrtActive
+                    ? 'bg-emerald-950/60 border-emerald-500/50 text-emerald-400'
+                    : 'bg-slate-900 border-slate-700 text-slate-400'
+                }`}
+              >
+                CRT: {isCrtActive ? 'ON' : 'OFF'}
+              </button>
+            )}
+
+            <button
+              onClick={handleToggleSound}
+              className={`flex-1 py-1.5 px-2 rounded font-bold border text-center transition-colors ${
+                !isMuted
+                  ? 'bg-cyan-950/60 border-cyan-500/50 text-cyan-400'
+                  : 'bg-slate-900 border-slate-700 text-slate-500'
+              }`}
+            >
+              SFX: {!isMuted ? 'ON' : 'OFF'}
+            </button>
+          </div>
         </div>
       )}
 

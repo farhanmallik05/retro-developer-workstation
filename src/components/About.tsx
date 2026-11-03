@@ -90,28 +90,28 @@ export const About: React.FC = () => {
 
                 {/* Metadata rows */}
                 <div className="space-y-2 pt-2 text-slate-300">
-                  <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                    <span className="text-slate-500">DEGREE:</span>
+                  <div className="flex flex-col min-[360px]:flex-row min-[360px]:justify-between border-b border-slate-800/60 pb-1.5 gap-0.5">
+                    <span className="text-slate-500 text-[10px]">DEGREE:</span>
                     <span className="font-semibold text-white">B.Tech CSE &amp; IT ('28)</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                    <span className="text-slate-500">INSTITUTE:</span>
+                  <div className="flex flex-col min-[360px]:flex-row min-[360px]:justify-between border-b border-slate-800/60 pb-1.5 gap-0.5">
+                    <span className="text-slate-500 text-[10px]">INSTITUTE:</span>
                     <span className="font-semibold text-white">KCC ITM, Greater Noida</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                    <span className="text-slate-500">LEADERSHIP:</span>
+                  <div className="flex flex-col min-[360px]:flex-row min-[360px]:justify-between border-b border-slate-800/60 pb-1.5 gap-0.5">
+                    <span className="text-slate-500 text-[10px]">LEADERSHIP:</span>
                     <span className="font-semibold text-amber-400">Campus Lead '26 (OSCG)</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                    <span className="text-slate-500">HONORS:</span>
+                  <div className="flex flex-col min-[360px]:flex-row min-[360px]:justify-between border-b border-slate-800/60 pb-1.5 gap-0.5">
+                    <span className="text-slate-500 text-[10px]">HONORS:</span>
                     <span className="font-semibold text-emerald-400">2x Hackathon Finalist</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                    <span className="text-slate-500">OPEN_SOURCE:</span>
+                  <div className="flex flex-col min-[360px]:flex-row min-[360px]:justify-between border-b border-slate-800/60 pb-1.5 gap-0.5">
+                    <span className="text-slate-500 text-[10px]">OPEN_SOURCE:</span>
                     <span className="font-semibold text-cyan-400">Kestra &amp; Apertre 3.0</span>
                   </div>
-                  <div className="flex justify-between border-b border-slate-800/60 pb-1.5">
-                    <span className="text-slate-500">LOCATION:</span>
+                  <div className="flex flex-col min-[360px]:flex-row min-[360px]:justify-between border-b border-slate-800/60 pb-1.5 gap-0.5">
+                    <span className="text-slate-500 text-[10px]">LOCATION:</span>
                     <span className="font-semibold text-white">Greater Noida, India</span>
                   </div>
                 </div>

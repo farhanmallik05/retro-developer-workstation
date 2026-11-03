@@ -64,3 +64,4 @@ export const GsapOperatorManifesto: React.FC = () => {
     </div>
   );
 };
+

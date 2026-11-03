@@ -255,7 +255,7 @@ export const IsometricMotherboard: React.FC = () => {
                   </div>
 
                   {/* Silicon Pinout Array */}
-                  <div className="grid grid-cols-2 gap-1.5 mt-4">
+                  <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-1.5 mt-4">
                     {chip.pins.map((p) => {
                       const isPinActive = probedPin?.pin === p.pin;
 

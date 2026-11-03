@@ -86,28 +86,30 @@ export const App: React.FC = () => {
       <Footer onOpenTerminal={() => setIsTerminalOpen(true)} />
 
       {/* Floating Retro Fast-Launch Drawer (Bottom-Right) */}
-      <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2 p-1.5 rounded bg-[#0b101c]/95 border border-slate-700 shadow-2xl backdrop-blur-md text-xs font-mono">
+      <div className="fixed bottom-4 right-3 sm:right-4 z-40 flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded bg-[#0b101c]/95 border border-slate-700 shadow-2xl backdrop-blur-md text-[11px] sm:text-xs font-mono">
         <button
           onClick={() => setIsTerminalOpen(true)}
-          className="flex items-center gap-1 px-3 py-1.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 hover:text-white transition-colors"
+          className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 hover:text-white transition-colors"
           title="Launch Interactive Terminal CLI"
         >
           <Terminal className="w-3.5 h-3.5" />
-          <span>[ $ CLI ]</span>
+          <span className="hidden xs:inline">[ $ CLI ]</span>
+          <span className="xs:hidden">CLI</span>
         </button>
 
         <button
           onClick={() => setIsAITwinOpen(true)}
-          className="flex items-center gap-1 px-3 py-1.5 rounded bg-purple-950/80 border border-purple-500/40 text-purple-300 hover:text-white transition-colors"
+          className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded bg-purple-950/80 border border-purple-500/40 text-purple-300 hover:text-white transition-colors"
           title="Ask Bedrock AI Twin"
         >
           <Bot className="w-3.5 h-3.5" />
-          <span>[ AI TWIN ]</span>
+          <span className="hidden xs:inline">[ AI TWIN ]</span>
+          <span className="xs:hidden">AI</span>
         </button>
 
         <button
           onClick={() => setIsArcadeOpen(true)}
-          className="flex items-center gap-1 px-3 py-1.5 rounded bg-amber-950/80 border border-amber-500/40 text-amber-300 hover:text-white transition-colors"
+          className="hidden min-[480px]:flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded bg-amber-950/80 border border-amber-500/40 text-amber-300 hover:text-white transition-colors"
           title="Launch CYBER-RUNNER 1984 2D Arcade ROM"
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -116,8 +118,8 @@ export const App: React.FC = () => {
 
         <button
           onClick={() => setIsCommandPaletteOpen(true)}
-          className="px-2 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition-colors"
-          title="Command Palette"
+          className="px-2 py-1.5 rounded bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition-colors text-[10px] sm:text-xs"
+          title="Command Palette (Ctrl+K)"
         >
           ⌘K
         </button>
