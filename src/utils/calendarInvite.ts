@@ -114,3 +114,4 @@ export function generateMailtoLink(booking: BookingDetails): string {
   );
   return `mailto:farhanmallik05@gmail.com?subject=${subject}&body=${body}`;
 }
+

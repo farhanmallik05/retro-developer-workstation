@@ -20,7 +20,7 @@ export const VisitorTelemetry: React.FC = () => {
           <Activity className="w-4 h-4 text-emerald-400 animate-pulse" />
           <span>Serverless Telemetry:</span>
           <strong className="text-white font-mono">{visitorCount.toLocaleString()}</strong>
-          <span>Visits Logged via DynamoDB</span>
+          <span>Visits Logged — DynamoDB Architecture Demo</span>
         </div>
 
         <div className="flex items-center gap-4 text-[11px]">

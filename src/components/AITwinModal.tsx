@@ -36,7 +36,7 @@ export const AITwinModal: React.FC<AITwinModalProps> = ({ isOpen, onClose }) => 
   const [messages, setMessages] = useState<Message[]>([
     {
       role: 'assistant',
-      text: "👋 Hi! I am Farhan Mallik's AI Twin (grounded on Bedrock Claude 3.5). Ask me anything about my full-stack engineering, multi-agent AI systems, AWS cloud architectures, or portfolio design!",
+      text: "👋 Hi! I am Farhan's AI Knowledge Twin — trained on his full project portfolio, AWS architectures, and open-source dossiers. Ask me anything about his multi-agent systems, cloud engineering, or technical skills!",
     },
   ]);
   const [input, setInput] = useState('');
@@ -76,10 +76,10 @@ export const AITwinModal: React.FC<AITwinModalProps> = ({ isOpen, onClose }) => 
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-white text-sm">Farhan's AI Twin</h3>
                 <span className="px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-[10px]">
-                  Amazon Bedrock
+                  Bedrock Architecture
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">Claude 3.5 Haiku • Sub-300ms Latency</p>
+              <p className="text-[11px] text-slate-400">Knowledge Base • Bedrock-Patterned Q&A</p>
             </div>
           </div>
           <button
@@ -122,7 +122,7 @@ export const AITwinModal: React.FC<AITwinModalProps> = ({ isOpen, onClose }) => 
           {isTyping && (
             <div className="flex items-center gap-2 text-slate-500 text-[11px] italic">
               <Bot className="w-3.5 h-3.5 text-cyan-400 animate-spin" />
-              <span>Bedrock model thinking...</span>
+              <span>AI processing response...</span>
             </div>
           )}
         </div>

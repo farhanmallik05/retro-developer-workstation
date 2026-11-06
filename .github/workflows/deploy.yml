@@ -1,4 +1,4 @@
-name: CI/CD Build, Test & Deploy to GitHub Pages
+name: CI/CD Build, Test & Deploy
 
 on:
   push:
@@ -38,10 +38,12 @@ jobs:
       - name: 🏗️ Build Vite Production Bundle
         run: npm run build
 
-      - name: 🚀 Deploy to GitHub Pages
+      - name: 🚀 Deploy to GitHub Pages (Mirror)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
           commit_message: 'deploy: automated build & edge release from main [skip ci]'
+      # Note: Primary hosting is AWS Amplify (auto-triggered on push to main via Amplify Console)
+      # AWS Amplify CI/CD is connected directly to this repository and uses amplify.yml for build config

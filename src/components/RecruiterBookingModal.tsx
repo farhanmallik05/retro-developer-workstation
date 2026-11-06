@@ -339,3 +339,4 @@ export const RecruiterBookingModal: React.FC<RecruiterBookingModalProps> = ({
     </div>
   );
 };
+
